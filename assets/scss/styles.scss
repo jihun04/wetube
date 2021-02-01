@@ -1,5 +1,7 @@
-@import "config/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
-body {
-  background-color: $sexyColor;
-}
+@import "config/variables.scss";
+@import "config/reset.scss";
+@import "main.scss";
+
+@import "partials/header.scss";

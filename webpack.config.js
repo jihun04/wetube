@@ -38,7 +38,7 @@ const config = {
                     autoprefixer,
                     {
                       //options
-                      browsers: "cover 99.5%"
+                      overrideBrowserslist: "cover 99.5%"
                     },
                   ]
                 ]
