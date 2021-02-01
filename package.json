@@ -5,7 +5,6 @@
   "author": "jihun04",
   "dependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
@@ -24,11 +23,12 @@
     "pug": "^3.0.0"
   },
   "scripts": {
-    "dev:server": "babel-node init.js",
+    "dev:server": "nodemon --exec babel-node init.js --delay 2",
     "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
     "build:assets": "cross-env WEBPACK_ENV=production webpack"
   },
   "devDependencies": {
+    "@babel/node": "^7.12.10",
     "autoprefixer": "^10.2.4",
     "css-loader": "^5.0.1",
     "eslint": "^7.18.0",
@@ -40,9 +40,9 @@
     "nodemon": "^2.0.7",
     "postcss": "^8.2.4",
     "postcss-loader": "^4.2.0",
+    "prettier": "^2.2.1",
     "sass-loader": "^10.1.1",
     "webpack": "^5.19.0",
-    "webpack-cli": "^4.4.0",
-    "prettier": "^2.2.1"
+    "webpack-cli": "^4.4.0"
   }
 }
