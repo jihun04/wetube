@@ -1,0 +1,47 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form {
+    width: 100%;
+    max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 10px 0 15px 0;
+      transition: all 0.3s ease-in-out;
+      &:not(:last-child) {
+        border: 2px solid $dark-grey;
+        box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06);
+        animation: shadowFadeOut 0.3s ease-in-out;
+        will-change: box-shadow;
+      }
+      &:last-child {
+        color: white;
+        background-color: rgba($color: #3498db, $alpha: 0.9);
+        box-shadow: 0 0 10px -1px rgba($color: #3498db, $alpha: 0.5);
+        &:active {
+          background-color: #3498db;
+        }
+      }
+      &:focus,
+      &:active {
+        transform: scale(1.001);
+        box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06);
+        animation: shadowFadeIn 0.3s ease-in-out;
+      }
+      @keyframes shadowFadeIn {
+        0% { box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06); }
+        50% { box-shadow: none; }
+        100% { box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06); }
+      }
+      @keyframes shadowFadeOut {
+        0% { box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06); }
+        50% { box-shadow: none; }
+        100% { box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06); }
+      }
+    }
+  }
+}
