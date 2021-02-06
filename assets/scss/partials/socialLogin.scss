@@ -1,13 +1,26 @@
 .social-login {
-  margin-top: 25px;
+  margin-top: 35px;
   width: 100%;
   max-width: 370px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  .social-login__line {
+    height: 2px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background-color: rgba($color: #C3C2C4, $alpha: 0.4);
+    span {
+      background-color: $grey;
+      padding: 0 12px;
+    }
+  }
   button {
     color: white;
-    margin-bottom: 15px;
     border: none;
     i {
       margin-right: 10px;

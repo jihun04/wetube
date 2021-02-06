@@ -58,7 +58,8 @@ a {
 input {
   box-sizing: border-box;
 }
-input {
+input,
+textarea {
   border: none;
   box-sizing: border-box;
   &:focus,

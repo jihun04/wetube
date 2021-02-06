@@ -8,40 +8,59 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    input {
+    input:not([type="file"]),
+    .fileUpload,
+    textarea {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      margin: 10px 0 15px 0;
-      transition: all 0.3s ease-in-out;
+      margin-top: 10px;
+      transition: all 0.15s ease-in-out;
+      max-width: 370px;
       &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      &:not([type="submit"]) {
         border: 2px solid $dark-grey;
         box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06);
-        animation: shadowFadeOut 0.3s ease-in-out;
+        animation: shadowFadeOut 0.15s ease-in-out;
         will-change: box-shadow;
+        &:focus,
+        &:active {
+          transform: scale(1.001);
+          box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06);
+          animation: shadowFadeIn 0.15s ease-in-out;
+        }
+        @keyframes shadowFadeIn {
+          0% { box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06); }
+          50% { box-shadow: none; }
+          100% { box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06); }
+        }
+        @keyframes shadowFadeOut {
+          0% { box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06); }
+          50% { box-shadow: none; }
+          100% { box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06); }
+        }
       }
-      &:last-child {
+      &[type="submit"] {
         color: white;
         background-color: rgba($color: #3498db, $alpha: 0.9);
-        box-shadow: 0 0 10px -1px rgba($color: #3498db, $alpha: 0.5);
         &:active {
           background-color: #3498db;
         }
       }
-      &:focus,
-      &:active {
-        transform: scale(1.001);
-        box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06);
-        animation: shadowFadeIn 0.3s ease-in-out;
-      }
-      @keyframes shadowFadeIn {
-        0% { box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06); }
-        50% { box-shadow: none; }
-        100% { box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06); }
-      }
-      @keyframes shadowFadeOut {
-        0% { box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.06); }
-        50% { box-shadow: none; }
-        100% { box-shadow: inset 0 2px 3px 1px rgba(0, 0, 0, 0.06); }
-      }
+    }
+    textarea {
+      height: 150px;
+    }
+  }
+  a {
+    max-width: 370px;
+    width: 100%;
+  }
+  .fileUpload {
+    label {
+      margin-right: 10px;
+      font-weight: 300;
+      color: rgba(0, 0, 0, 0.7);
     }
   }
 }
