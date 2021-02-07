@@ -2,10 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 8px 0 8px;
+  .video__player {
+    max-width: 850px;
+    video {
+      width: 100%;
+    }
+  }
   .video__info {
     width: 100%;
     max-width: 850px;
-    margin-top: 25px;
+    margin-top: 10px;
+    overflow: hidden;
     button {
       width: 100%;
       border: none;
@@ -17,20 +25,26 @@
       display: block;
       margin-bottom: 15px;
     }
+    .video__title,
+    .video__description {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .video__title {
-      font-size: 22px;
-      font-weight: 300;
+      font-size: 23px;
+      font-weight: 400;
     }
     .video__views {
-      font-size: 14px;
+      font-size: 16px;
     }
     .video__description {
-      font-size: 18px;
+      font-size: 19px;
     }
     .video__comments {
       margin-top: 25px;
-      .video__comments-number {
-        font-size: 18px;
+      .video__comment-number {
+        font-size: 19px;
       }
     }
   }
