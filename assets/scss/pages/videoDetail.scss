@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 8px 0 8px;
+  margin: 0 16px;
   .video__player {
     max-width: 850px;
     video {
       width: 100%;
+      border-radius: 5px;
     }
   }
   .video__info {
@@ -32,20 +33,20 @@
       text-overflow: ellipsis;
     }
     .video__title {
-      font-size: 23px;
+      font-size: 22px;
       font-weight: 400;
     }
     .video__views {
       font-size: 16px;
     }
     .video__description {
-      font-size: 19px;
+      font-size: 18px;
     }
-    .video__comments {
-      margin-top: 25px;
-      .video__comment-number {
-        font-size: 19px;
-      }
+  }
+  .video__comments {
+    margin-top: 25px;
+    .video__comment-number {
+      font-size: 18px;
     }
   }
 }
