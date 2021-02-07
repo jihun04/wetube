@@ -23,20 +23,20 @@ export const postJoin = async (req, res, next) => {
       next();
     } catch (error) {
       console.log(error);
+      res.redirect(routes.home);
     }
   }
 };
 
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Log In" });
-export const postLogin = (req, res) => passport.authenticate("local", {
+
+export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home
 });
 
 export const logout = (req, res) => {
-  // To Do: Process Log Out
-  res.redirect(routes.home);
 };
 
 export const userDetail = (req, res) =>
