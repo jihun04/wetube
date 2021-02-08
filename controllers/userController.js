@@ -50,14 +50,14 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
       return cb(null, user);
     }
     const newUser = await User.create({
-      name,
       email,
-      avatarUrl: avatar_url,
-      githubId: id
+      name,
+      githubId: id,
+      avatarUrl: avatar_url
     });
     return cb(null, newUser);
-  } catch (errror) {
-    return cb(error)
+  } catch (error) {
+    return cb(error);
   }
 };
 
