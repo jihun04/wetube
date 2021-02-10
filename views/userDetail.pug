@@ -1,4 +1,7 @@
 extends layouts/main
 
 block content
-    p User Detail
+    .user-profile
+        .user-profile__header
+            img.avatar(suc=user.avatarUrl)
+            h4.user-profile__username=user.name
