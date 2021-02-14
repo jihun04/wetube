@@ -67,7 +67,9 @@ export const postGithubLogin = (req, res) => {
 
 export const facebookLogin = passport.authenticate("facebook");
 
-export const facebookLoginCallback = (_, __, profile, cb) => { };
+export const facebookLoginCallback = (_, __, profile, cb) => {
+  return cb();
+};
 
 export const postFacebookLogin = (req, res) => {
   res.redirect(routes.home);
@@ -90,7 +92,6 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
       user.save();
       return cb(null, user);
     }
-    console.log(id, avatarUrl, name, email);
     const newUser = User.create({
       email,
       name,
@@ -127,7 +128,27 @@ export const userDetail = async (req, res) => {
     res.redirect(routes.home);
   }
 };
-export const getEditProfile = (req, res) =>
+
+export const getEditProfile = (req, res) => {
   res.render("editProfile", { pageTitle: "Edit Profile" });
+};
+
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file
+  } = req;
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    res.render("editProfile", { pageTitle: "Edit Profile" });
+  }
+};
+
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });

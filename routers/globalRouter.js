@@ -38,7 +38,6 @@ globalRouter.get(
   postGithubLogin
 );
 
-
 globalRouter.get(routes.facebook, facebookLogin);
 
 globalRouter.get(
