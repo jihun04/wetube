@@ -12,19 +12,19 @@ export const postJoin = async (req, res, next) => {
   } = req;
   if (password !== password2) {
     res.status(400);
-    res.render("join", { pageTitle: "Join" });
-  } else {
-    try {
-      const user = await User({
-        name,
-        email
-      });
-      await User.register(user, password);
-      next();
-    } catch (error) {
-      console.log(error);
-      res.redirect(routes.home);
-    }
+    res.redirect(routes.join);
+    return
+  }
+  try {
+    const user = await User({
+      name,
+      email
+    });
+    await User.register(user, password);
+    next();
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
   }
 };
 
@@ -146,9 +146,26 @@ export const postEditProfile = async (req, res) => {
     });
     res.redirect(routes.me);
   } catch (error) {
-    res.render("editProfile", { pageTitle: "Edit Profile" });
+    res.redirect(`/users${routes.editProfile}`);
   }
 };
 
-export const changePassword = (req, res) =>
+export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
+
+export const postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, newPassword1 }
+  } = req;
+  try {
+    if (newPassword !== newPassword1) {
+      res.status(400);
+      res.redirect(`/users${routes.changePassword}`);
+      return
+    }
+    await req.user.changePassword(oldPassword, newPassword);
+    res.redirect(routes.me);
+  } catch (error) {
+    res.redirect(`/users${routes.changePassword}`);
+  }
+};
