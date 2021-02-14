@@ -17,11 +17,11 @@ export const search = async (req, res) => {
   } = req;
   let videos = [];
   try {
-    videos = await Video.find({title: { $regex: searchingBy, $options: "i" }})
+    videos = await Video.find({ title: { $regex: searchingBy, $options: "i" } })
   } catch (error) {
     console.log(error);
-    res.render("search", { pageTitle: "Search", searchingBy, videos });
   }
+  res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
 export const getUpload = (req, res) =>
@@ -35,7 +35,8 @@ export const postUpload = async (req, res) => {
   const newVideo = await Video.create({
     fileUrl: path,
     title,
-    description
+    description,
+    creatorId: req.user._id
   });
   res.redirect(routes.videoDetail(newVideo.id));
 };
@@ -74,7 +75,7 @@ export const postEditVideo = async (req, res) => {
   try {
     await Video.findOneAndUpdate({ _id: id }, {
       title,
-      description  
+      description
     });
     res.redirect(routes.home);
   } catch (error) {
