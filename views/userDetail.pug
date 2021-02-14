@@ -3,7 +3,11 @@ extends layouts/main
 block content
     .user-profile
         .user-profile__header
-            img.u-avatar(style=`background-image: url('${user.avatarUrl}')`)
+            if typeof user.avatarUrl !== "undefined"
+                if user.avatarUrl.substring(0,4) === "http"
+                    .u-avatar(style=`background-image: url('${user.avatarUrl}');`)
+                else
+                    .u-avatar(style=`background-image: url('/${user.avatarUrl}');`)
             h4.user-profile__username=user.name
         if user.id === loggedUser.id
             .user-profile__btns
