@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   border-radius: 5px;
+  background-color: $black;
   &:hover {
     .videoPlayer__controls {
       opacity: 1;
@@ -33,6 +34,48 @@
       display: flex;
       align-items: center;
       &:first-child {
+        .videoPlayer__volume {
+          visibility: hidden;
+          position: absolute;
+          padding: 0;
+          z-index: -1;
+          opacity: 0;
+          top: -60px;
+          left: 3px;
+          transition: all 0.4s ease-in-out;
+          transform: rotate(-90deg);
+          width: 80px;
+          border: none;
+          -webkit-appearance: none;
+          &:hover {
+            opacity: 1;
+            z-index: 10;
+            visibility: visible;
+          }
+          &::-webkit-slider-runnable-track {
+            background-color: $grey;
+            height: 5px;
+          }
+          &::-webkit-slider-thumb {
+            background-color: $red;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            position: relative;
+            top: -5px;
+          }
+          background-color: rgba($color: $black, $alpha: 0.6);
+          cursor: pointer;    
+        }
+        #jsVolumeBtn {
+          &:hover {
+            & + .videoPlayer__volume {
+              opacity: 1;
+              z-index: 10;
+              visibility: visible;
+            }
+          }
+        }
         span:not(:last-child) {
           margin-right: 8px;
         }
