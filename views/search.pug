@@ -11,6 +11,7 @@ block content
         +videoBlock({
             title:item.title,
             views:item.views,
-            videoFile:item.videoFile,
-            id:item.id
+            videoFile: `/${item.videoFile}`,
+            id:item.id,
+            creator: item.creator
         })

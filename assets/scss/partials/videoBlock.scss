@@ -5,11 +5,31 @@
     width: 340px;
     margin-bottom: 8px;
   }
-  .videoBlock__title {
-    font-weight: 400;
-    margin-bottom: 5px;
-  }
-  .videoBlock__views {
-    color: rgba($color: #444444, $alpha: 0.6);
+  .videoBlock__info {
+    display: flex;
+    padding: 0 5px;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      &:first-child {
+        margin-right: 5px;
+      }
+    }
+    .videoBlock__u-avatar {
+      width: 40px;
+      height: 40px;
+      background-position: center;
+      background-size: cover;
+      border-radius: 50%;
+    }
+    .videoBlock__title {
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+    .videoBlock__views {
+      color: rgba($color: #444444, $alpha: 0.6);
+    }
   }
 }
