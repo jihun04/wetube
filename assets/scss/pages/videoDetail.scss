@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin: 0 16px;
-  .video__player {
+  .videoPlayer {
     max-width: 850px;
     video {
       width: 100%;
@@ -38,6 +38,11 @@
     }
     .video__views {
       font-size: 16px;
+    }
+    .video__auther {
+      a {
+        color: rgba($color: #3498db, $alpha: 0.9);
+      }
     }
     .video__description {
       font-size: 18px;

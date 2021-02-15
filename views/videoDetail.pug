@@ -1,22 +1,22 @@
 extends layouts/main
+include mixins/videoPlayer
 
 block content
     .video-detail__container
-        .video__player
-            video(src=`/${video.fileUrl}`)
+        +videoPlayer(video)
         .video__info
             if loggedUser
                 if String(video.creator._id) === String(loggedUser._id)
                     a(href=routes.editVideo(video.id))
                         button Edit video
             h5.video__title=video.title
-            .video__auther
-                |Uploaded by 
-                a(href=routes.userDetail(video.creator.id))=video.creator.name
             if video.views === 1
                 span.video__views #{video.views} view
             else
                 span.video__views #{video.views} views
+            .video__auther
+                |Uploaded by 
+                a(href=routes.userDetail(video.creator.id))=video.creator.name
             p.video__description=video.description
         .video__comments
             if video.comments.length === 1
