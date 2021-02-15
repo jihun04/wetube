@@ -8,11 +8,14 @@ mixin videoPlayer(video = {})
         span#jsVolumeBtn
           i.fas.fa-volume-up
       .videoPlayer__column 
-        span 00:00 / 10:00
-        .time 
-          .time__current
-          .time__scrubber-container 
-            .time__scrubber
+        span
+          span#jsCurrentTime 00:00
+          |/ 
+          span#jsTotalTime 
+        .time-bar 
+          .time-bar__current
+          .time-bar__scrubber-container 
+            .time-bar__scrubber
       .videoPlayer__column 
         span#jsFullScrnBtn
           i.fas.fa-expand

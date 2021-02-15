@@ -51,7 +51,7 @@
           white-space: nowrap;
           margin-right: 8px;
         }
-        .time {
+        .time-bar {
           width: 100%;
           height: 6px;
           background-color: $grey;
@@ -61,19 +61,19 @@
           will-change: height;
           transition: all 0.2s ease-in-out;
           border-radius: 3px;
-          .time__current {
+          .time-bar__current {
             border-radius: 3px;
             background-color: $red;
             width: 30%;
             height: 100%;
           }
-          .time__scrubber-container {
+          .time-bar__scrubber-container {
             transform: translateX(300px);
             position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
-            .time__scrubber {
+            .time-bar__scrubber {
               position: absolute;
               background-color: $red;
               border-radius: 50%;
@@ -85,13 +85,13 @@
           }
         }
         &:hover {
-          .time {
+          .time-bar {
             height: 8px;
             border-radius: 4px;
-            .time__current {
+            .time-bar__current {
               border-radius: 4px;
             }
-            .time__scrubber {
+            .time-bar__scrubber {
               width: 13px;
               height: 13px;
             }
