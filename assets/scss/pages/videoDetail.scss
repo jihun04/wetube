@@ -3,13 +3,6 @@
   flex-direction: column;
   align-items: center;
   margin: 0 16px;
-  .videoPlayer {
-    max-width: 850px;
-    video {
-      width: 100%;
-      border-radius: 5px;
-    }
-  }
   .video__info {
     width: 100%;
     max-width: 850px;

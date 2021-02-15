@@ -9,12 +9,12 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
     "prettier/prettier": "off",
-    "no-console":"off",
-    "spaced-comment":"off",
-    "no-else-return":"off"
-  },    
+    "no-console": "off",
+    "spaced-comment": "off",
+    "no-else-return": "off"
+  }
 };

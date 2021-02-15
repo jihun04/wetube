@@ -5,7 +5,7 @@ mixin videoPlayer(video = {})
       .videoPlayer__column 
         span#jsPlayBtn 
           i.fas.fa-play
-        span 
+        span#jsVolumeBtn
           i.fas.fa-volume-up
       .videoPlayer__column 
         span 00:00 / 10:00
@@ -14,5 +14,5 @@ mixin videoPlayer(video = {})
           .time__scrubber-container 
             .time__scrubber
       .videoPlayer__column 
-        span 
+        span#jsFullScrnBtn
           i.fas.fa-expand

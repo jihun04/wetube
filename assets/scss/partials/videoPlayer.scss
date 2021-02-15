@@ -1,10 +1,19 @@
 .videoPlayer {
+  max-height: 479px;
+  max-width: 850px;
   font-size: 1em;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
   &:hover {
     .videoPlayer__controls {
       opacity: 1;
     }
+  }
+  video {
+    width: 100%;
   }
   .videoPlayer__controls {
     z-index: 9;
@@ -17,7 +26,7 @@
     position: absolute;
     display: flex;
     align-items: center;
-    bottom: 1px;
+    bottom: 0;
     padding: 12px;
     background-color: rgba($color: $black, $alpha: 0.6);
     .videoPlayer__column {
@@ -30,6 +39,9 @@
       }
       &:not(:nth-child(2)) {
         width: fit-content;
+        span {
+          cursor: pointer;
+        }
       }
       &:nth-child(2) {
         margin: 0 10px;
@@ -56,6 +68,7 @@
             height: 100%;
           }
           .time__scrubber-container {
+            transform: translateX(300px);
             position: absolute;
             display: flex;
             justify-content: center;
@@ -70,7 +83,9 @@
               cursor: pointer;
             }
           }
-          &:hover {
+        }
+        &:hover {
+          .time {
             height: 8px;
             border-radius: 4px;
             .time__current {
