@@ -15,8 +15,9 @@ block content
             else
                 span.video__views #{video.views} views
             .video__auther
-                |Uploaded by 
-                a(href=routes.userDetail(video.creator.id))=video.creator.name
+                a(href=routes.userDetail(video.creator.id))
+                    .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                    span=video.creator.name
             p.video__description=video.description
         .video__comments
             if video.comments.length === 1

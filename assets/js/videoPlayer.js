@@ -5,7 +5,9 @@ let videoPlayer,
   fullScrnBtn,
   currentTime,
   totalTime,
-  volume;
+  volume,
+  progress;
+
 function handlePlayBtnClick() {
   if (videoPlayer.paused) {
     videoPlayer.play();
@@ -20,15 +22,7 @@ function handleVolumeBtnClick() {
   if (videoPlayer.muted) {
     videoPlayer.muted = false;
     volume.value = videoPlayer.volume;
-    if (volume.value > 0.5) {
-      volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-    } else if (volume.value > 0.1) {
-      volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
-    } else if (volume.value > 0) {
-      volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
-    } else {
-      volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-    }
+    changeVolumeIcon(volume.value);
   } else {
     videoPlayer.muted = true;
     volume.value = 0;
@@ -83,10 +77,12 @@ function formatDate(secondsNumber) {
 function setTotalTime() {
   const totalTimeString = formatDate(Math.ceil(videoPlayer.duration));
   totalTime.innerText = totalTimeString;
+  progress.max = videoPlayer.duration;
   videoPlayer.addEventListener("timeupdate", getCurrentTime);
 }
 
 function getCurrentTime() {
+  progress.value = videoPlayer.currentTime;
   currentTime.innerText = formatDate(videoPlayer.currentTime);
 }
 
@@ -99,6 +95,11 @@ function handleDrag(event) {
   const {
     target: { value }
   } = event;
+  changeVolumeIcon(value);
+  videoPlayer.volume = value;
+}
+
+function changeVolumeIcon(value) {
   if (value > 0.5) {
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
   } else if (value > 0.1) {
@@ -108,7 +109,53 @@ function handleDrag(event) {
   } else {
     volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
   }
-  videoPlayer.volume = value;
+}
+
+function handleArrowRight() {
+  videoPlayer.currentTime += 5;
+}
+
+function handleArrowLeft() {
+  videoPlayer.currentTime -= 5;
+}
+
+function handleArrowUp() {
+  if (videoPlayer.volume < 0.9) {
+    videoPlayer.volume += 0.1;
+    volume.value = videoPlayer.volume;
+    changeVolumeIcon(videoPlayer.volume);
+  } else {
+    videoPlayer.volume = 1;
+  }
+}
+
+function handleArrowDown() {
+  if (videoPlayer.volume > 0.1) {
+    videoPlayer.volume -= 0.1;
+    volume.value = videoPlayer.volume;
+    changeVolumeIcon(videoPlayer.volume);
+  } else {
+    videoPlayer.volume = 0;
+  }
+}
+
+function handleKeyDown(event) {
+  const key = event.key;
+  if (key === "m") {
+    handleVolumeBtnClick();
+  } else if (key === "f") {
+    fullScrnBtn.click();
+  } else if (key === " ") {
+    handlePlayBtnClick();
+  } else if (key === "ArrowRight") {
+    handleArrowRight();
+  } else if (key === "ArrowLeft") {
+    handleArrowLeft();
+  } else if (key === "ArrowUp") {
+    handleArrowUp();
+  } else if (key === "ArrowDown") {
+    handleArrowDown();
+  }
 }
 
 function init() {
@@ -119,6 +166,7 @@ function init() {
   currentTime = document.getElementById("jsCurrentTime");
   totalTime = document.getElementById("jsTotalTime");
   volume = document.getElementById("jsVolume");
+  progress = document.querySelector(".progress progress");
   videoPlayer.volume = 0.5;
   playBtn.addEventListener("click", handlePlayBtnClick);
   volumeBtn.addEventListener("click", handleVolumeBtnClick);
@@ -126,6 +174,16 @@ function init() {
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volume.addEventListener("input", handleDrag);
+  window.addEventListener("keydown", handleKeyDown);
+  progress.addEventListener("click", function (e) {
+    console.log(e);
+    let pos = (e.offsetX / e.target.parentNode.offsetWidth) * videoPlayer.duration;
+    console.log(pos);
+    videoPlayer.currentTime = pos;
+    progress.value = pos;
+  });
+  let supportsProgress = (document.createElement('progress').max !== undefined);
+  if (!supportsProgress) progress.setAttribute('data-state', 'fake');
 };
 
 if (videoContainer) {

@@ -6,7 +6,6 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-  border-radius: 5px;
   background-color: $black;
   &:hover {
     .videoPlayer__controls {
@@ -94,50 +93,34 @@
           white-space: nowrap;
           margin-right: 8px;
         }
-        .time-bar {
+        .progress {
           width: 100%;
           height: 6px;
           background-color: $grey;
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          will-change: height;
           transition: all 0.2s ease-in-out;
           border-radius: 3px;
-          .time-bar__current {
-            border-radius: 3px;
-            background-color: $red;
-            width: 30%;
+          cursor: pointer;
+          progress[data-state="fake"] {
+            height: 6px;
+            background-color: $grey;
+          }
+          progress {
+            -webkit-appearance: none;
+            border-radius: 3px; 
+            width: 100%;
             height: 100%;
+            box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
           }
-          .time-bar__scrubber-container {
-            transform: translateX(300px);
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .time-bar__scrubber {
-              position: absolute;
-              background-color: $red;
-              border-radius: 50%;
-              width: 0;
-              height: 0;
-              transition: all 0.18s ease-in-out;
-              cursor: pointer;
-            }
+          progress[value]::-webkit-progress-bar {
+            border-radius: 7px;
+            background-color: $grey;
           }
-        }
-        &:hover {
-          .time-bar {
-            height: 8px;
-            border-radius: 4px;
-            .time-bar__current {
-              border-radius: 4px;
-            }
-            .time-bar__scrubber {
-              width: 13px;
-              height: 13px;
-            }
+          progress[value]::-webkit-progress-value {
+            background-color: $red;
+            border-radius: 7px;
           }
         }
       }

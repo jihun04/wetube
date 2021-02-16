@@ -3,8 +3,9 @@ mixin videoBlock(video = {})
         a(href=routes.videoDetail(video.id))
             video.videoBlock__thumbnail(src=video.videoFile, controls=false)
             .videoBlock__info 
-                div 
-                    .videoBlock__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                if video.creator
+                    div 
+                        .videoBlock__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
                 div
                     h4.videoBlock__title=video.title
                     if video.views === 1

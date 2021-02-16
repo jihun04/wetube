@@ -13,10 +13,9 @@ mixin videoPlayer(video = {})
           span#jsCurrentTime 00:00
           span /
           span#jsTotalTime 
-        .time-bar 
-          .time-bar__current
-          .time-bar__scrubber-container 
-            .time-bar__scrubber
+        .progress 
+          progress#progress(value="0", min="0")
+            span#progressBar
       .videoPlayer__column 
         span#jsFullScrnBtn
           i.fas.fa-expand
