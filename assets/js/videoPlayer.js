@@ -6,7 +6,9 @@ let videoPlayer,
   currentTime,
   totalTime,
   volume,
-  progress;
+  progress,
+  timer,
+  videoControls;
 
 function handlePlayBtnClick() {
   if (videoPlayer.paused) {
@@ -65,6 +67,20 @@ function goFullScreen() {
   fullScrnBtn.innerHTML = '<i class="fas fa-compress"></i>';
   fullScrnBtn.removeEventListener("click", goFullScreen);
   fullScrnBtn.addEventListener("click", exitFullScreen);
+}
+
+function handleHide() {
+  videoContainer.style.cursor = "none";
+  videoControls.classList.remove("opacity--1");
+}
+
+function handleShow() {
+  clearTimeout(timer);
+  videoContainer.style.cursor = "default";
+  videoControls.classList.add("opacity--1");
+  timer = setTimeout(function () {
+    handleHide();
+  }, 2000);
 }
 
 function formatDate(secondsNumber) {
@@ -167,18 +183,21 @@ function init() {
   totalTime = document.getElementById("jsTotalTime");
   volume = document.getElementById("jsVolume");
   progress = document.querySelector(".progress progress");
+  videoControls = document.querySelector(".videoPlayer__controls");
   videoPlayer.volume = 0.5;
+  console.log(playBtn);
   playBtn.addEventListener("click", handlePlayBtnClick);
   volumeBtn.addEventListener("click", handleVolumeBtnClick);
   fullScrnBtn.addEventListener("click", goFullScreen);
+  videoContainer.addEventListener("mousemove", handleShow);
+  videoPlayer.addEventListener("click", handlePlayBtnClick);
+  videoPlayer.addEventListener("dblclick", handleHide);
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volume.addEventListener("input", handleDrag);
   window.addEventListener("keydown", handleKeyDown);
   progress.addEventListener("click", function (e) {
-    console.log(e);
     let pos = (e.offsetX / e.target.parentNode.offsetWidth) * videoPlayer.duration;
-    console.log(pos);
     videoPlayer.currentTime = pos;
     progress.value = pos;
   });
