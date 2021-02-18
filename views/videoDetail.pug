@@ -24,3 +24,5 @@ block content
                 span.video__comment-number 1 comment
             else
                 span.video__comment-number #{video.comments.length} comments
+            form.video__comment-form(action=routes.videoDetail(video.id), method="post")
+                input(type="text", name="commentText", placeholder="Add a comment") 

@@ -143,6 +143,26 @@ function handleArrowLeft() {
   videoPlayer.currentTime -= 5;
 }
 
+function handleMouseLeave() {
+  window.removeEventListener("keydown", handleArrowUpDown);
+}
+
+function handleMouseUp() {
+  window.addEventListener("keydown", handleArrowUpDown);
+}
+
+function handleArrowUpDown(event) {
+  event.preventDefault();
+  const key = event.key;
+  if (videoPlayer.muted === false) {
+    if (key === "ArrowUp") {
+      handleArrowUp();
+    } else if (key === "ArrowDown") {
+      handleArrowDown();
+    }
+  }
+}
+
 function handleArrowUp() {
   if (videoPlayer.volume < 0.9) {
     videoPlayer.volume += 0.1;
@@ -175,10 +195,6 @@ function handleKeyDown(event) {
     handleArrowRight();
   } else if (key === "ArrowLeft") {
     handleArrowLeft();
-  } else if (key === "ArrowUp") {
-    handleArrowUp();
-  } else if (key === "ArrowDown") {
-    handleArrowDown();
   }
 }
 
@@ -198,6 +214,8 @@ function init() {
   volumeBtn.addEventListener("click", handleVolumeBtnClick);
   fullScrnBtn.addEventListener("click", goFullScreen);
   videoContainer.addEventListener("mousemove", handleShow);
+  videoContainer.addEventListener("mouseup", handleMouseUp);
+  videoContainer.addEventListener("mouseleave", handleMouseLeave);
   videoPlayer.addEventListener("click", handlePlayBtnClick);
   videoPlayer.addEventListener("dblclick", handleHide);
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
