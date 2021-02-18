@@ -30,9 +30,32 @@ block content
                 each comment in video.comments
                     li 
                         .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)
-                        .comment__text 
-                            if (parseInt((Date.now() - comment.createdAt), 10) / 86400) === 1
-                                span #{parseInt((Date.now() - comment.createdAt), 10) / 86400} day ago
+                        .comment__text
+                            if Math.floor((Date.now() - comment.createdAt) / 31622400000) > 0
+                                if Math.floor((Date.now() - comment.createdAt) / 31622400000) === 1
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 31622400000)} year ago
+                                else 
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 31622400000)} years ago
+                            else if Math.floor((Date.now() - comment.createdAt) / 2635200000) > 0
+                                if Math.floor((Date.now() - comment.createdAt) / 2635200000) === 1
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 2635200000)} month ago
+                                else 
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 2635200000)} months ago
+                            else if Math.floor((Date.now() - comment.createdAt) / 86400000) > 0
+                                if Math.floor((Date.now() - comment.createdAt) / 86400000) === 1
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 86400)} day ago
+                                else 
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 86400000)} days ago
+                            else if Math.floor((Date.now() - comment.createdAt) / 3600000) > 0
+                                if Math.floor((Date.now() - comment.createdAt) / 3600000) === 1
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 3600000)} hour ago
+                                else 
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 3600000)} hours ago
+                            else if Math.floor((Date.now() - comment.createdAt) / 60000) > 0
+                                if Math.floor((Date.now() - comment.createdAt) / 60000) === 1
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 60000)} minute ago
+                                else 
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 60000)} minutes ago
                             else 
-                                span #{parseInt((Date.now() - comment.createdAt), 10) / 86400} days ago
+                                span just a moment ago
                             p=comment.text 

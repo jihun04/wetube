@@ -154,6 +154,17 @@ function handleMouseUp() {
 function handleArrowUpDown(event) {
   event.preventDefault();
   const key = event.key;
+  if (key === "f") {
+    fullScrnBtn.click();
+  } else if (key === "m") {
+    handleVolumeBtnClick();
+  } else if (key === " ") {
+    handlePlayBtnClick();
+  } else if (key === "ArrowRight") {
+    handleArrowRight();
+  } else if (key === "ArrowLeft") {
+    handleArrowLeft();
+  }
   if (videoPlayer.muted === false) {
     if (key === "ArrowUp") {
       handleArrowUp();
@@ -183,21 +194,6 @@ function handleArrowDown() {
   }
 }
 
-function handleKeyDown(event) {
-  const key = event.key;
-  if (key === "m") {
-    handleVolumeBtnClick();
-  } else if (key === "f") {
-    fullScrnBtn.click();
-  } else if (key === " ") {
-    handlePlayBtnClick();
-  } else if (key === "ArrowRight") {
-    handleArrowRight();
-  } else if (key === "ArrowLeft") {
-    handleArrowLeft();
-  }
-}
-
 function init() {
   videoPlayer = videoContainer.querySelector("video");
   playBtn = document.getElementById("jsPlayBtn");
@@ -221,7 +217,6 @@ function init() {
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volume.addEventListener("input", handleDrag);
-  window.addEventListener("keydown", handleKeyDown);
   progress.addEventListener("click", function (e) {
     let pos = (e.offsetX / e.target.parentNode.offsetWidth) * videoPlayer.duration;
     videoPlayer.currentTime = pos;
