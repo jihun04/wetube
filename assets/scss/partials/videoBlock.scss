@@ -8,13 +8,13 @@
   .videoBlock__info {
     display: flex;
     padding: 0 5px;
-    div {
+    a {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
       &:first-child {
-        margin-right: 5px;
+        margin-right: 10px;
       }
     }
     .videoBlock__u-avatar {

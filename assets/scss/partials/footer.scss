@@ -1,6 +1,6 @@
 .footer {
-  border-top: 2px solid rgba($color: #C3C2C4, $alpha: 0.4);
-  padding: 23px 0;
+  border-top: 1px solid rgba($color: #444444, $alpha: 0.12);
+  padding: 20px 0;
   margin-top: 25px;
   display: flex;
   flex-direction: column;
@@ -8,10 +8,10 @@
   color: #C3C2C4;
   .footer__icon {
     font-size: 25px;
-    margin: 10px 0;
+    margin-bottom: 10px;
   }
   .footer__text {
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
   }
 }

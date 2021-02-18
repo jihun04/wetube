@@ -1,9 +1,17 @@
 header.header
     .header__wrapper
         .header__column
+            .header__bars
+                button
+                i.fas.fa-bars
             a(href=routes.home)
                 i.fab.fa-youtube
-                span WeTube
+                span W
+                span e
+                span T
+                span u
+                span b
+                span e
         .header__column
             form(action=routes.search, method="get")
                 input(type="text", placeholder="Search by term...", name="term")
@@ -11,13 +19,17 @@ header.header
             ul
                 if !loggedUser
                     li
-                        a(href=routes.join) Join
-                    li
                         a(href=routes.login) Log In
+                    li.header__join-btn
+                        a(href=routes.join) Join
                 else 
                     li
                         a(href=`/videos${routes.upload}`) Upload
                     li
-                        a(href=routes.me) Profile
-                    li
                         a(href=routes.logout) Log Out
+                    li
+                        a(href=routes.me)
+                            if loggedUser.avatarUrl.includes("http://") || loggedUser.avatarUrl.includes("https://")
+                                div(style=`background-image: ${loggedUser.avatarUrl};`)
+                            else 
+                                div(style=`background-image: ${loggedUser.avatarUrl};`)

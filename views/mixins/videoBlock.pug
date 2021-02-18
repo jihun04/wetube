@@ -2,13 +2,16 @@ mixin videoBlock(video = {})
     .videoBlock
         a(href=routes.videoDetail(video.id))
             video.videoBlock__thumbnail(src=video.videoFile, controls=false)
-            .videoBlock__info 
-                if video.creator
-                    div 
+        .videoBlock__info 
+            if video.creator
+                a(href=routes.userDetail(video.creator.id))
+                    if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
                         .videoBlock__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
-                div
-                    h4.videoBlock__title=video.title
-                    if video.views === 1
-                        h6.videoBlock__views 1 view
-                    else
-                        h6.videoBlock__views #{video.views} views
+                    else                         
+                        .videoBlock__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+            a(href=routes.videoDetail(video.id))
+                h4.videoBlock__title=video.title
+                if video.views === 1
+                    h6.videoBlock__views 1 view
+                else
+                    h6.videoBlock__views #{video.views} views

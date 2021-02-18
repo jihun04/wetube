@@ -16,21 +16,36 @@ block content
                 span.video__views #{video.views} views
             .video__auther
                 a(href=routes.userDetail(video.creator.id))
-                    .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                    if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                        .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
+                    else                         
+                        .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
                     span=video.creator.name
-            p.video__description=video.description
+                p.video__description=video.description
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number 1 comment
             else
                 span.video__comment-number #{video.comments.length} comments
-            form.video__comment-form#jsAddComment
-                input(type="text", placeholder="Add a comment")
+            if loggedUser 
+                form.video__comment-form#jsAddComment
+                    if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                        .video__loggedUser-avatar(style=`background-image: url('${loggedUser.avatarUrl}');`)
+                    else 
+                        .video__loggedUser-avatar(style=`background-image: url('/${loggedUser.avatarUrl}');`)
+                    .wrap-input
+                        input(type="text", placeholder="Add a comment")
             ul.video__comments-list
-                each comment in video.comments
+                each comment in comments
                     li 
-                        .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)
+                        a(href=routes.userDetail(comment.creator.id))
+                            if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                                .comment__u-avatar(style=`background-image: url('${comment.creator.avatarUrl}')`)
+                            else 
+                                .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)
                         .comment__text
+                            a(href=routes.userDetail(comment.creator.id))
+                                span.comment__username=comment.creator.name
                             if Math.floor((Date.now() - comment.createdAt) / 31622400000) > 0
                                 if Math.floor((Date.now() - comment.createdAt) / 31622400000) === 1
                                     span #{Math.floor((Date.now() - comment.createdAt) / 31622400000)} year ago
