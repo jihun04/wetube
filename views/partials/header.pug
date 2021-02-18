@@ -30,6 +30,6 @@ header.header
                     li
                         a(href=routes.me)
                             if loggedUser.avatarUrl.includes("http://") || loggedUser.avatarUrl.includes("https://")
-                                div(style=`background-image: ${loggedUser.avatarUrl};`)
+                                div(style=`background-image: url('${loggedUser.avatarUrl}');`)
                             else 
-                                div(style=`background-image: ${loggedUser.avatarUrl};`)
+                                div(style=`background-image: url('/${loggedUser.avatarUrl}');`)

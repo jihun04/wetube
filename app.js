@@ -19,7 +19,6 @@ const app = express();
 
 const CokieStore = MongoStore(session);
 
-app.use(helmet());
 app.use(
   helmet({
     contentSecurityPolicy: false,
