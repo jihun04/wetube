@@ -10,6 +10,13 @@ let videoPlayer,
   timer,
   videoControls;
 
+function registerView() {
+  const id = window.location.href.split("/videos/")[1];
+  fetch(`/api/${id}/view`, {
+    method: "POST"
+  });
+}
+
 function handlePlayBtnClick() {
   if (videoPlayer.paused) {
     videoPlayer.play();
@@ -103,6 +110,7 @@ function getCurrentTime() {
 }
 
 function handleEnded() {
+  registerView();
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
