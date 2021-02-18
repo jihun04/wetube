@@ -24,5 +24,15 @@ block content
                 span.video__comment-number 1 comment
             else
                 span.video__comment-number #{video.comments.length} comments
-            form.video__comment-form(action=routes.videoDetail(video.id), method="post")
-                input(type="text", name="commentText", placeholder="Add a comment") 
+            form.video__comment-form#jsAddComment
+                input(type="text", placeholder="Add a comment")
+            ul.video__comments-list
+                each comment in video.comments
+                    li 
+                        .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)
+                        .comment__text 
+                            if (parseInt((Date.now() - comment.createdAt), 10) / 86400) === 1
+                                span #{parseInt((Date.now() - comment.createdAt), 10) / 86400} day ago
+                            else 
+                                span #{parseInt((Date.now() - comment.createdAt), 10) / 86400} days ago
+                            p=comment.text 
