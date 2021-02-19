@@ -110,6 +110,7 @@
           margin-right: 15px;
         }
         .comment__text {
+          width: 100%;
           .comment__username {
             font-weight: 500;
             margin-right: 5px;
@@ -122,6 +123,89 @@
             margin-top: 7px;
             word-break: break-all;
             line-height: 20px;
+          }
+        }
+        .comment__menu {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-left: 15px;
+          button {
+            background-color: rgba($color: #000000, $alpha: 0);
+            padding: 0;
+            margin: 0;
+            border: none;
+            color: rgba($color: #444444, $alpha: 0.6);
+            font-size: 16px;
+            &:focus {
+              outline: none;
+            }
+          }
+          .comment__up-vote-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;  
+            border: 2px solid rgba($color: #444444, $alpha: 0.12);
+            border-radius: 6px;
+            transition: color 0.2s ease-in-out;
+            padding-bottom: 5px;
+            i {
+              color: rgba($color: #444444, $alpha: 0.6)
+            }
+            .up-vote-number {
+              color: #030303;
+              line-height: 10px;
+            }
+          }
+          .comment__up-vote-btn--active {
+            color: #10b981;
+          }
+          div {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 5px;
+            .comment__edit-btn,
+            .comment__delete-btn {
+              width: 18px;
+              height: 18px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              &:active {
+                div {
+                  width: 100%;
+                  height: 100%;
+                  background-color: rgba($color: #444444, $alpha: 0.12);
+                }
+              }
+              div {
+                transition: height 0.2s ease-in-out,
+                width 0.2s ease-in-out,
+                background-color 0.2s ease-in-out;
+                width: 10px;
+                height: 10px;
+                margin: 0;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+            .comment__edit-btn {
+              .comment__wrap-edit {
+                font-size: 13px;
+              }
+            }
+            .comment__delete-btn {
+              .comment__wrap-delete {
+                font-size: 16px;
+              }
+            }
           }
         }
       }
