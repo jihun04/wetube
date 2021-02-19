@@ -9,11 +9,6 @@
     margin-top: 20px;
     overflow: hidden;
     border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
-    button {
-      width: 100%;
-      border: none;
-      margin-bottom: 15px;
-    }
     .video__title,
     .video__description {
       word-break: break-all;
@@ -33,25 +28,39 @@
       width: 100%;
       border-top: 1px solid rgba($color: #444444, $alpha: 0.12);
       padding-top: 20px;
-      a {
-        width: fit-content;
+      margin-bottom: 10px;
+      div {
         display: flex;
-        align-items: center;
-        .video__u-avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          background-position: center;
-          background-size: cover;
-          margin-right: 15px;
+        justify-content: space-between;
+        a {
+          width: fit-content;
+          display: flex;
+          align-items: center;
+          .video__u-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+            margin-right: 15px;
+          }
+          span {
+            font-size: 18px;
+            font-weight: 500;
+            color: #030303;
+          }
         }
-        span {
-          font-size: 18px;
-          font-weight: 500;
-          color: #030303;
+        button {
+          width: fit-content;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 16px;
+          border: none;
+          margin: 12px 0;
+          border-radius: 2px;
         }
       }
-      margin-bottom: 10px;
     }
     .video__description {
       margin-left: 64px;

@@ -5,10 +5,6 @@ block content
     .video-detail__container
         +videoPlayer(video)
         .video__info
-            if loggedUser
-                if String(video.creator._id) === String(loggedUser._id)
-                    a(href=routes.editVideo(video.id))
-                        button Edit video
             h5.video__title=video.title
             .wrap-othr
                 if video.views === 1
@@ -18,12 +14,17 @@ block content
                 span  • 
                 span.video__date #{new Date(video.createdAt).getFullYear()}. #{new Date(video.createdAt).getMonth()}. #{new Date(video.createdAt).getDate()}.
             .video__auther
-                a(href=routes.userDetail(video.creator.id))
-                    if video.creator.avatarUrl.substring(0,4) === "http"
-                        .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
-                    else                         
-                        .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
-                    span=video.creator.name
+                div
+                    a(href=routes.userDetail(video.creator.id))
+                        if video.creator.avatarUrl.substring(0,4) === "http"
+                            .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
+                        else                         
+                            .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                        span=video.creator.name
+                    if loggedUser
+                        if String(video.creator._id) === String(loggedUser._id)
+                            a(href=routes.editVideo(video.id))
+                                button Edit video
                 p.video__description=video.description
         .video__comments
             if video.comments.length === 1

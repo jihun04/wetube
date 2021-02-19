@@ -3,7 +3,30 @@ import { doc } from "prettier";
 
 const addCommentForm = document.getElementById("jsAddComment"),
   commentList = document.querySelector(".video__comments-list"),
-  commentNumber = document.querySelector(".video__comment-number");
+  commentNumber = document.querySelector(".video__comment-number"),
+  commentDeleteBtns = document.querySelectorAll(".comment__delete-btn");
+
+function handleSuccessDelete(li) {
+  const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]) - 1;
+  commentNumber.innerText = `${commentInnerNumber > 0 ? `${commentInnerNumber} comments` : `${commentInnerNumber} comment`}`;
+  commentList.removeChild(li);
+}
+
+async function deleteComment(event) {
+  const target = this;
+  const li = target.parentNode.parentNode.parentNode;
+  const id = window.location.href.split("/videos/")[1];
+  const response = await axios({
+    url: `/api/${id}/comment/delete`,
+    method: "POST",
+    data: {
+      commentId: li.id
+    }
+  });
+  if (response) {
+    handleSuccessDelete(li);
+  }
+}
 
 function addComment(response, comment) {
   const li = document.createElement("li");
@@ -25,7 +48,7 @@ function addComment(response, comment) {
   const deleteBtn = document.createElement("button");
   const wrapDelete = document.createElement("div");
   const deleteIcon = document.createElement("i");
-  const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]);
+  const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]) + 1;
   li.id = response.data._id;
   avatarA.href = `/users/${response.data.creator._id}`;
   if (response.data.creator.avatarUrl.substring(0, 4) === "http") {
@@ -38,6 +61,7 @@ function addComment(response, comment) {
   date.innerText = "just a moment ago";
   text.innerText = comment;
   upVoteNumber.innerText = "0";
+  deleteBtn.addEventListener("click", deleteComment);
   commentNumber.innerText = `${commentInnerNumber > 0 ? `${commentInnerNumber} comments` : `${commentInnerNumber} comment`}`;
   menu.classList.add("comment__menu");
   upVoteBtn.classList.add("comment__up-vote-btn");
@@ -97,6 +121,9 @@ function handleSubmit(event) {
 
 function init() {
   addCommentForm.addEventListener("submit", handleSubmit);
+  for (const commentDeleteBtn of commentDeleteBtns) {
+    commentDeleteBtn.addEventListener("click", deleteComment);
+  }
 }
 
 if (addCommentForm) {
