@@ -43,6 +43,7 @@
             background-position: center;
             background-size: cover;
             margin-right: 15px;
+            background-color: $dark-grey;
           }
           span {
             font-size: 18px;
@@ -88,6 +89,7 @@
         background-size: cover;
         border-radius: 50%;
         margin-right: 15px;
+        background-color: $dark-grey;
       }
       .wrap-input {
         width: 100%;
@@ -117,6 +119,7 @@
           background-size: cover;
           border-radius: 50%;
           margin-right: 15px;
+          background-color: $dark-grey;
         }
         .comment__text {
           width: 100%;
@@ -132,6 +135,11 @@
             margin-top: 7px;
             word-break: break-all;
             line-height: 20px;
+          }
+          .comment__input {
+            background-color: rgba($color: #000000, $alpha: 0);
+            border: none;
+            border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
           }
         }
         .comment__menu {
@@ -160,18 +168,27 @@
             align-items: center;  
             border: 2px solid rgba($color: #444444, $alpha: 0.12);
             border-radius: 6px;
-            transition: color 0.2s ease-in-out;
+            transition: border 0.1s ease-in-out;
             padding-bottom: 5px;
             i {
+              transition: color 0.2s ease-in-out;
               color: rgba($color: #444444, $alpha: 0.6)
             }
             .up-vote-number {
               color: #030303;
               line-height: 10px;
+              transition: color 0.2s ease-in-out;
             }
           }
           .comment__up-vote-btn--active {
-            color: #10b981;
+            border: 2px solid rgba($color: #10b981, $alpha: 0.12);
+            i {
+              color: #10b981;
+            }
+            .up-vote-number {
+              color: #10b981;
+              line-height: 10px;
+            }
           }
           div {
             display: flex;

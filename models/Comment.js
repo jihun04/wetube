@@ -9,6 +9,10 @@ const CommentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  upVote: {
+    type: Number,
+    default: 0
+  },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"

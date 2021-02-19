@@ -5,10 +5,13 @@ mixin videoBlock(video = {})
         .videoBlock__info 
             if video.creator
                 a(href=routes.userDetail(video.creator.id))
-                    if video.creator.avatarUrl.substring(0,4) === "http"
-                        .videoBlock__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
-                    else                         
-                        .videoBlock__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                    if video.creator.avatarUrl
+                        if video.creator.avatarUrl.substring(0,4) === "http"
+                            .videoBlock__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
+                        else                         
+                            .videoBlock__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                    else 
+                        .videoBlock__u-avatar
             a(href=routes.videoDetail(video.id))
                 h4.videoBlock__title=video.title
                 if video.views === 1

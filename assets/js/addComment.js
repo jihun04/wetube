@@ -4,7 +4,46 @@ import { doc } from "prettier";
 const addCommentForm = document.getElementById("jsAddComment"),
   commentList = document.querySelector(".video__comments-list"),
   commentNumber = document.querySelector(".video__comment-number"),
-  commentDeleteBtns = document.querySelectorAll(".comment__delete-btn");
+  commentDeleteBtns = document.querySelectorAll(".comment__delete-btn"),
+  commentUpVoteBtns = document.querySelectorAll(".comment__up-vote-btn"),
+  commentEditBtns = document.querySelectorAll(".comment__edit-btn");
+
+function handleEditBtnClick() {
+  const target = this;
+}
+
+async function handleUpVoteBtnClick() {
+  const target = this;
+  const upVoteNumber = target.querySelector(".up-vote-number");
+  const li = target.parentNode.parentNode;
+  if (Boolean(target.classList[1] === "comment__up-vote-btn--active")) {
+    const response = await axios({
+      url: "/api/comment/upvote",
+      method: "POST",
+      data: {
+        commentId: li.id,
+        direction: false
+      }
+    });
+    if (response.status === 200) {
+      target.classList.remove("comment__up-vote-btn--active");
+      upVoteNumber.innerText = parseInt(upVoteNumber.innerText) - 1;
+    }
+  } else {
+    const response = await axios({
+      url: "/api/comment/upvote",
+      method: "POST",
+      data: {
+        commentId: li.id,
+        direction: true
+      }
+    });
+    if (response.status === 200) {
+      target.classList.add("comment__up-vote-btn--active");
+      upVoteNumber.innerText = parseInt(upVoteNumber.innerText) + 1;
+    }
+  }
+}
 
 function handleSuccessDelete(li) {
   const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]) - 1;
@@ -12,7 +51,7 @@ function handleSuccessDelete(li) {
   commentList.removeChild(li);
 }
 
-async function deleteComment(event) {
+async function deleteComment() {
   const target = this;
   const li = target.parentNode.parentNode.parentNode;
   const id = window.location.href.split("/videos/")[1];
@@ -23,7 +62,7 @@ async function deleteComment(event) {
       commentId: li.id
     }
   });
-  if (response) {
+  if (response === 200) {
     handleSuccessDelete(li);
   }
 }
@@ -61,6 +100,7 @@ function addComment(response, comment) {
   date.innerText = "just a moment ago";
   text.innerText = comment;
   upVoteNumber.innerText = "0";
+  upVoteBtn.addEventListener("click", handleUpVoteBtnClick);
   deleteBtn.addEventListener("click", deleteComment);
   commentNumber.innerText = `${commentInnerNumber > 0 ? `${commentInnerNumber} comments` : `${commentInnerNumber} comment`}`;
   menu.classList.add("comment__menu");
@@ -123,6 +163,12 @@ function init() {
   addCommentForm.addEventListener("submit", handleSubmit);
   for (const commentDeleteBtn of commentDeleteBtns) {
     commentDeleteBtn.addEventListener("click", deleteComment);
+  }
+  for (const commentUpVoteBtn of commentUpVoteBtns) {
+    commentUpVoteBtn.addEventListener("click", handleUpVoteBtnClick);
+  }
+  for (const commentEditBtn of commentEditBtns) {
+    commentEditBtn.addEventListener("click", handleEditBtnClick);
   }
 }
 

@@ -191,3 +191,27 @@ export const postDeleteComment = async (req, res) => {
     res.end();
   }
 }
+
+export const postRegisterUpVote = async (req, res) => {
+  const {
+    body: { commentId, direction },
+    user
+  } = req;
+  try {
+    const comment = await Comment.findById(commentId);
+    if (direction) {
+      comment.upvote += 1;
+      user.upVotes.push(comment.id);
+    } else {
+      comment.upvote -= 1;
+      user.upVotes.splice(comment.id, 1);
+    }
+    comment.save();
+    user.save();
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+}

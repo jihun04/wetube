@@ -16,10 +16,13 @@ block content
             .video__auther
                 div
                     a(href=routes.userDetail(video.creator.id))
-                        if video.creator.avatarUrl.substring(0,4) === "http"
-                            .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
-                        else                         
-                            .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                        if video.creator.avatarUrl
+                            if video.creator.avatarUrl.substring(0,4) === "http"
+                                .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
+                            else                         
+                                .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                        else 
+                            .video__u-avatar
                         span=video.creator.name
                     if loggedUser
                         if String(video.creator._id) === String(loggedUser._id)
@@ -33,20 +36,26 @@ block content
                 span.video__comment-number #{video.comments.length} comments
             if loggedUser 
                 form.video__comment-form#jsAddComment
-                    if loggedUser.avatarUrl.substring(0,4) === "http"
-                        .video__loggedUser-avatar(style=`background-image: url('${loggedUser.avatarUrl}');`)
+                    if loggedUser.avatarUrl
+                        if loggedUser.avatarUrl.substring(0,4) === "http"
+                            .video__loggedUser-avatar(style=`background-image: url('${loggedUser.avatarUrl}');`)
+                        else 
+                            .video__loggedUser-avatar(style=`background-image: url('/${loggedUser.avatarUrl}');`)
                     else 
-                        .video__loggedUser-avatar(style=`background-image: url('/${loggedUser.avatarUrl}');`)
+                        .video__loggedUser-avatar
                     .wrap-input
                         input(type="text", placeholder="Add a comment")
             ul.video__comments-list
                 each comment in comments
                     li(id=comment.id)
                         a(href=routes.userDetail(comment.creator.id))
-                            if comment.creator.avatarUrl.substring(0,4) === "http"
-                                .comment__u-avatar(style=`background-image: url('${comment.creator.avatarUrl}')`)
-                            else 
-                                .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)
+                            if comment.creator.avatarUrl
+                                if comment.creator.avatarUrl.substring(0,4) === "http"
+                                    .comment__u-avatar(style=`background-image: url('${comment.creator.avatarUrl}')`)
+                                else 
+                                    .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)
+                            else
+                                .comment__u-avatar
                         .comment__text
                             a(href=routes.userDetail(comment.creator.id))
                                 span.comment__username=comment.creator.name
@@ -78,15 +87,22 @@ block content
                             else 
                                 span just a moment ago
                             p=comment.text 
+                            input.comment__input.none(required=true, value=comment.text)
                         .comment__menu 
-                            button.comment__up-vote-btn 
-                                i.fas.fa-chevron-up
-                                span.up-vote-number 0
-                            div 
-                                button.comment__edit-btn 
-                                    .comment__wrap-edit
-                                        i.fas.fa-pen
-                                button.comment__delete-btn 
-                                    .comment__wrap-delete
-                                        i.fas.fa-times
+                            if loggedUser
+                                if loggedUser.upVotes.map(x => String(x)).includes(comment.id)
+                                    button.comment__up-vote-btn.comment__up-vote-btn--active
+                                        i.fas.fa-chevron-up
+                                        span.up-vote-number=comment.upvote
+                                else
+                                    button.comment__up-vote-btn
+                                        i.fas.fa-chevron-up
+                                        span.up-vote-number=comment.upvote
+                                div 
+                                    button.comment__edit-btn 
+                                        .comment__wrap-edit
+                                            i.fas.fa-pen
+                                    button.comment__delete-btn 
+                                        .comment__wrap-delete
+                                            i.fas.fa-times
 
