@@ -5,7 +5,7 @@ mixin videoBlock(video = {})
         .videoBlock__info 
             if video.creator
                 a(href=routes.userDetail(video.creator.id))
-                    if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                    if video.creator.avatarUrl.substring(0,4) === "http"
                         .videoBlock__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
                     else                         
                         .videoBlock__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)

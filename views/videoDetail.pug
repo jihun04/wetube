@@ -10,13 +10,16 @@ block content
                     a(href=routes.editVideo(video.id))
                         button Edit video
             h5.video__title=video.title
-            if video.views === 1
-                span.video__views #{video.views} view
-            else
-                span.video__views #{video.views} views
+            .wrap-othr
+                if video.views === 1
+                    span.video__views #{video.views} view
+                else
+                    span.video__views #{video.views} views
+                span  • 
+                span.video__date #{new Date(video.createdAt).getFullYear()}. #{new Date(video.createdAt).getMonth()}. #{new Date(video.createdAt).getDate()}.
             .video__auther
                 a(href=routes.userDetail(video.creator.id))
-                    if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                    if video.creator.avatarUrl.substring(0,4) === "http"
                         .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
                     else                         
                         .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
@@ -29,7 +32,7 @@ block content
                 span.video__comment-number #{video.comments.length} comments
             if loggedUser 
                 form.video__comment-form#jsAddComment
-                    if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                    if loggedUser.avatarUrl.substring(0,4) === "http"
                         .video__loggedUser-avatar(style=`background-image: url('${loggedUser.avatarUrl}');`)
                     else 
                         .video__loggedUser-avatar(style=`background-image: url('/${loggedUser.avatarUrl}');`)
@@ -39,7 +42,7 @@ block content
                 each comment in comments
                     li 
                         a(href=routes.userDetail(comment.creator.id))
-                            if video.creator.avatarUrl.includes("http://") || video.creator.avatarUrl.includes("https://")
+                            if comment.creator.avatarUrl.substring(0,4) === "http"
                                 .comment__u-avatar(style=`background-image: url('${comment.creator.avatarUrl}')`)
                             else 
                                 .comment__u-avatar(style=`background-image: url('/${comment.creator.avatarUrl}')`)

@@ -29,7 +29,7 @@ header.header
                         a(href=routes.logout) Log Out
                     li
                         a(href=routes.me)
-                            if loggedUser.avatarUrl.includes("http://") || loggedUser.avatarUrl.includes("https://")
+                            if loggedUser.avatarUrl.substring(0,4) === "http"
                                 div(style=`background-image: url('${loggedUser.avatarUrl}');`)
                             else 
                                 div(style=`background-image: url('/${loggedUser.avatarUrl}');`)

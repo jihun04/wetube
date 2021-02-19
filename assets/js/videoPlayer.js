@@ -205,7 +205,6 @@ function init() {
   progress = document.querySelector(".progress progress");
   videoControls = document.querySelector(".videoPlayer__controls");
   videoPlayer.volume = 0.5;
-  console.log(playBtn);
   playBtn.addEventListener("click", handlePlayBtnClick);
   volumeBtn.addEventListener("click", handleVolumeBtnClick);
   fullScrnBtn.addEventListener("click", goFullScreen);

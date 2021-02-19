@@ -55,7 +55,20 @@ export const videoDetail = async (req, res) => {
       const findedComment = await Comment.findById(comment.id).populate("creator");
       comments.push(findedComment);
     }
-    res.render("videoDetail", { pageTitle: video.title, video, comments });
+    res.render("videoDetail", {
+      pageTitle: video.title, video, comments: comments.sort((a, b) => {
+        if (String(a.creator.id) === String(req.user._id)) {
+          return -1;
+        }
+        if (a.createdAt > b.createdAt && String(b.creator.id) !== String(req.user._id)) {
+          return -1;
+        } else if (a.createdAt < b.createdAt) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+    });
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
@@ -148,6 +161,7 @@ export const postAddComment = async (req, res) => {
     user.comments.push(newComment.id);
     video.save();
     user.save();
+    res.json(user);
     res.status(200);
   } catch (error) {
     res.status(400);
