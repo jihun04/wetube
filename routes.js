@@ -44,6 +44,7 @@ const ADD_COMMENT = "/:id/comment";
 const DELETE_COMMENT = "/:id/comment/delete";
 const REGISTER_UPVOTE = "/comment/upvote";
 const EDIT_COMMENT = "/comment/edit";
+const VIDEO_FILTER = "/filter/video";
 
 const routes = {
   home: HOME,
@@ -96,7 +97,8 @@ const routes = {
   addComment: ADD_COMMENT,
   deleteComment: DELETE_COMMENT,
   registerUpVote: REGISTER_UPVOTE,
-  editComment: EDIT_COMMENT
+  editComment: EDIT_COMMENT,
+  videoFilter: VIDEO_FILTER
 };
 
 export default routes;

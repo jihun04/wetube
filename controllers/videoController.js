@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+import getVideoDuration from "get-video-duration";
 
 export const home = async (req, res) => {
   try {
@@ -231,3 +232,66 @@ export const postEditComment = async (req, res) => {
     res.end();
   }
 };
+
+export const postVideoFilter = async (req, res) => {
+  const {
+    body: { type, value, term }
+  } = req;
+  try {
+    let videos = [];
+    if (type === "uploadDate") {
+      videos = await Video.find({ title: { $regex: term, $options: "i" }, createdAt: { $gte: value } }).populate("creator");
+    } else if (type === "duration") {
+      foundVideos = await Video.find({ title: { $regex: term, $options: "i" } }).populate("creator");
+      for (const video of foundVideos) {
+        getVideoDuration(video.fileUrl)
+          .then((duration) => {
+            if (duration <= value && value === 4) {
+              videos.push(video);
+            } else if (duration >= value && value === 20) {
+              videos.push(video);
+            }
+          });
+      }
+    } else if (type === "sortBy") {
+      videos = Video.find({ title: { $regex: term, $options: "i" } }).populate("creator");
+      if (value === "uploadDate") {
+        videos.sort((a, b) => {
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          } else if (a.createdAt > b.createdAt) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+      } else if (value === "viewCount") {
+        videos.sort((a, b) => {
+          if (a.views < b.views) {
+            return 1;
+          } else if (a.views > b.views) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+      } else if (value === "rating") {
+        videos.sort((a, b) => {
+          if (a.rating < b.rating) {
+            return 1;
+          } else if (a.rating > b.rating) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+      }
+    }
+    res.json(videos);
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+}

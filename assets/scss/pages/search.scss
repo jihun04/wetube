@@ -1,8 +1,78 @@
 .search__header {
-  margin-bottom: 20px;
+  width: 100%;
+  height: 36px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  button {
+    width: 80px;
+    min-width: 72px;
+    height: 100%;
+    padding: 0;
+    border-radius: 2px;
+    background-color: rgba($color: #000000, $alpha: 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #606060;
+    span {
+      font-weight: 600;
+    }
+    i {
+      position: relative;
+      bottom: -1px;
+      margin-right: 8px;
+    }
+  }
+}
+.transform-box {
+  width: 100%;
+  height: 0;
+  background-color: $white;
+  border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
+  margin-bottom: 15px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  .wrap-filter {
+    width: 100%;
+    height: 240px;
+    display: flex;
+    padding: 15px;
+    div {
+      flex: 1;
+      padding-right: 25px;
+      font-size: 16px;
+      color: #606060;
+      h3 {
+        text-transform: uppercase;
+        font-weight: 600;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
+      }
+      ul {
+        li {
+          height: 26px;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          cursor: pointer;
+          margin-top: 15px;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+        .li--selected {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+.transform-box--open {
+  height: 240px;
 }
 .search__videos {
   display: flex;

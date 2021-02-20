@@ -3,7 +3,32 @@ include mixins/videoBlock
 
 block content
     .search__header
+        if videos.length > 0
+            button#jsFilterBtn
+                i.fas.fa-filter
+                span FILTER
         h3 Searching for: #{searchingBy}
+    .transform-box
+        if videos.length > 0
+            .wrap-filter
+                .upload-date
+                    h3.upload-date-header Updoad date
+                    ul.upload-date-list
+                        li#hour Last hour
+                        li#day Today
+                        li#month This month
+                        li#year This year
+                .duration
+                    h3.duration-header Duration
+                    ul.duration-list
+                        li#short Short (< 4 minutes)
+                        li#long Long (> 20 minutes)
+                .sort-by
+                    h3.sort-by-header Sort by
+                    ul.sort-by-list
+                        li#uploadDate Upload date
+                        li#viewCount View count
+                        li#rating Rating
     .search__videos
         if videos.length === 0
             h5 No Videos Found
