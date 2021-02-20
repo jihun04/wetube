@@ -50,11 +50,43 @@ async function handleUploadDateClick() {
 }
 
 function handleDurationClick() {
-  console.log("lallalal");
+  const target = this;
+  const term = window.location.href.split("term=")[1];
+  let duration;
+  if (target.id === "short") {
+    duration = 4;
+  } else if (target.id === "long") {
+    duration = 20;
+  }
+  const response = await axios({
+    url: "/api/filter/video",
+    method: "POST",
+    data: {
+      type: "duration",
+      value: duration,
+      term
+    }
+  });
+  if (response.status === 200) {
+    paintVideos(response.data);
+  }
 }
 
 function handleSortByClick() {
-  console.log("lalalalal")
+  const target = this;
+  const term = window.location.href.split("term=")[1];
+  const response = await axios({
+    url: "/api/filter/video",
+    method: "POST",
+    data: {
+      type: "uploadDate",
+      value: target.id,
+      term
+    }
+  });
+  if (response.status === 200) {
+    paintVideos(response.data);
+  }
 }
 
 function init() {
