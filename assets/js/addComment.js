@@ -92,18 +92,21 @@ function handleSuccessDelete(li) {
 }
 
 async function deleteComment() {
-  const target = this;
-  const li = target.parentNode.parentNode.parentNode;
-  const id = window.location.href.split("/videos/")[1];
-  const response = await axios({
-    url: `/api/${id}/comment/delete`,
-    method: "POST",
-    data: {
-      commentId: li.id
+  const result = confirm("Want to delete?");
+  if (result) {
+    const target = this;
+    const li = target.parentNode.parentNode.parentNode;
+    const id = window.location.href.split("/videos/")[1];
+    const response = await axios({
+      url: `/api/${id}/comment/delete`,
+      method: "POST",
+      data: {
+        commentId: li.id
+      }
+    });
+    if (response.status === 200) {
+      handleSuccessDelete(li);
     }
-  });
-  if (response.status === 200) {
-    handleSuccessDelete(li);
   }
 }
 
