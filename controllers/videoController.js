@@ -57,10 +57,10 @@ export const videoDetail = async (req, res) => {
     }
     res.render("videoDetail", {
       pageTitle: video.title, video, comments: comments.sort((a, b) => {
-        if (String(a.creator.id) === String(req.user._id)) {
+        if (a.creator.id === String(req.user._id)) {
           return -1;
         }
-        if (a.createdAt > b.createdAt && String(b.creator.id) !== String(req.user._id)) {
+        if (a.createdAt > b.createdAt && b.creator.id !== String(req.user._id)) {
           return -1;
         } else if (a.createdAt < b.createdAt) {
           return 1;
@@ -215,3 +215,19 @@ export const postRegisterUpVote = async (req, res) => {
     res.end();
   }
 }
+
+export const postEditComment = async (req, res) => {
+  const {
+    body: { commentId, newComment }
+  } = req;
+  try {
+    const comment = await Comment.findById(commentId);
+    comment.text = newComment;
+    comment.save();
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};

@@ -8,8 +8,47 @@ const addCommentForm = document.getElementById("jsAddComment"),
   commentUpVoteBtns = document.querySelectorAll(".comment__up-vote-btn"),
   commentEditBtns = document.querySelectorAll(".comment__edit-btn");
 
+function editComment(li, newComment) {
+  const text = li.querySelector("p");
+  const editCommentForm = li.querySelector(".comment__form");
+  text.innerText = newComment;
+  text.classList.remove("none");
+  editCommentForm.classList.add("none");
+  editCommentForm.removeEventListener("submit", handleEditCommentSubmit);
+}
+
+async function handleEditCommentSubmit(event) {
+  event.preventDefault();
+  const target = this;
+  const newComment = target.querySelector("input").value;
+  const li = target.parentNode.parentNode;
+  const response = await axios({
+    url: "/api/comment/edit",
+    method: "POST",
+    data: {
+      commentId: li.id,
+      newComment
+    }
+  });
+  if (response.status === 200) {
+    editComment(li, newComment);
+  }
+}
+
 function handleEditBtnClick() {
   const target = this;
+  const li = target.parentNode.parentNode.parentNode;
+  const text = li.querySelector("p");
+  const editCommentForm = li.querySelector(".comment__form");
+  if (editCommentForm.classList[1] === "none") {
+    text.classList.add("none");
+    editCommentForm.classList.remove("none");
+    editCommentForm.addEventListener("submit", handleEditCommentSubmit);
+  } else {
+    text.classList.remove("none");
+    editCommentForm.classList.add("none");
+    editCommentForm.removeEventListener("submit", handleEditCommentSubmit);
+  }
 }
 
 async function handleUpVoteBtnClick() {
@@ -46,6 +85,7 @@ async function handleUpVoteBtnClick() {
 }
 
 function handleSuccessDelete(li) {
+  console.log(li, "lalalalal");
   const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]) - 1;
   commentNumber.innerText = `${commentInnerNumber > 0 ? `${commentInnerNumber} comments` : `${commentInnerNumber} comment`}`;
   commentList.removeChild(li);
@@ -62,7 +102,7 @@ async function deleteComment() {
       commentId: li.id
     }
   });
-  if (response === 200) {
+  if (response.status === 200) {
     handleSuccessDelete(li);
   }
 }
@@ -76,6 +116,8 @@ function addComment(response, comment) {
   const username = document.createElement("span");
   const date = document.createElement("span");
   const text = document.createElement("p");
+  const editCommentForm = document.createElement("form");
+  const editCommentInput = document.createElement("input");
   const menu = document.createElement("div");
   const upVoteBtn = document.createElement("button");
   const upVoteIcon = document.createElement("i");
@@ -90,19 +132,26 @@ function addComment(response, comment) {
   const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]) + 1;
   li.id = response.data._id;
   avatarA.href = `/users/${response.data.creator._id}`;
-  if (response.data.creator.avatarUrl.substring(0, 4) === "http") {
-    avatar.style.backgroundImage = `url('${response.data.creator.avatarUrl}')`;
-  } else {
-    avatar.style.backgroundImage = `url('/${response.data.creator.avatarUrl}')`;
+  if (response.data.creator.avatarUrl) {
+    if (response.data.creator.avatarUrl.substring(0, 4) === "http") {
+      avatar.style.backgroundImage = `url('${response.data.creator.avatarUrl}')`;
+    } else {
+      avatar.style.backgroundImage = `url('/${response.data.creator.avatarUrl}')`;
+    }
   }
   usernameA.href = `/users/${response.data.creator._id}`;
   username.innerText = response.data.creator.name;
   date.innerText = "just a moment ago";
   text.innerText = comment;
+  editCommentInput.required = true;
+  editCommentInput.value = comment;
   upVoteNumber.innerText = "0";
   upVoteBtn.addEventListener("click", handleUpVoteBtnClick);
+  editBtn.addEventListener("click", handleEditBtnClick);
   deleteBtn.addEventListener("click", deleteComment);
   commentNumber.innerText = `${commentInnerNumber > 0 ? `${commentInnerNumber} comments` : `${commentInnerNumber} comment`}`;
+  editCommentForm.className = "comment__form none";
+  editCommentInput.classList.add("comment__input");
   menu.classList.add("comment__menu");
   upVoteBtn.classList.add("comment__up-vote-btn");
   upVoteIcon.className = "fas fa-chevron-up";
@@ -123,6 +172,8 @@ function addComment(response, comment) {
   textBox.appendChild(usernameA);
   textBox.appendChild(date);
   textBox.appendChild(text);
+  textBox.appendChild(editCommentForm);
+  editCommentForm.appendChild(editCommentInput);
   usernameA.appendChild(username);
   menu.appendChild(upVoteBtn);
   menu.appendChild(wrapBtns);

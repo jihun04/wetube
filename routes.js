@@ -95,7 +95,8 @@ const routes = {
   registerView: REGISTER_VIEW,
   addComment: ADD_COMMENT,
   deleteComment: DELETE_COMMENT,
-  registerUpVote: REGISTER_UPVOTE
+  registerUpVote: REGISTER_UPVOTE,
+  editComment: EDIT_COMMENT
 };
 
 export default routes;

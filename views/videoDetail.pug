@@ -87,7 +87,8 @@ block content
                             else 
                                 span just a moment ago
                             p=comment.text 
-                            input.comment__input.none(required=true, value=comment.text)
+                            form.comment__form.none
+                                input.comment__input(required=true, value=comment.text)
                         .comment__menu 
                             if loggedUser
                                 if loggedUser.upVotes.map(x => String(x)).includes(comment.id)
@@ -98,11 +99,12 @@ block content
                                     button.comment__up-vote-btn
                                         i.fas.fa-chevron-up
                                         span.up-vote-number=comment.upvote
-                                div 
-                                    button.comment__edit-btn 
-                                        .comment__wrap-edit
-                                            i.fas.fa-pen
-                                    button.comment__delete-btn 
-                                        .comment__wrap-delete
-                                            i.fas.fa-times
+                                if comment.creator.id === String(loggedUser._id)
+                                    div 
+                                        button.comment__edit-btn 
+                                            .comment__wrap-edit
+                                                i.fas.fa-pen
+                                        button.comment__delete-btn 
+                                            .comment__wrap-delete
+                                                i.fas.fa-times
 
