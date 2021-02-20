@@ -2,6 +2,7 @@ import axios from "axios";
 
 const filterBtn = document.getElementById("jsFilterBtn"),
   transformBox = document.querySelector(".transform-box"),
+  filters = document.querySelectorAll(".wrap-filter li"),
   uploadDate = document.querySelectorAll(".upload-date li"),
   duration = document.querySelectorAll(".duration li"),
   sortBy = document.querySelectorAll(".sort-by li"),
@@ -184,6 +185,15 @@ async function handleSortByClick() {
   }
 }
 
+function handleFilterClick() {
+  const target = this;
+  const selectedFilter = document.querySelector(".li--selected");
+  if (selectedFilter) {
+    selectedFilter.classList.remove("li--selected");
+  }
+  target.classList.add("li-selected");
+}
+
 function init() {
   filterBtn.addEventListener("click", handleFilterBtnClick);
   for (const li of uploadDate) {
@@ -194,6 +204,9 @@ function init() {
   }
   for (const li of sortBy) {
     li.addEventListener("click", handleSortByClick);
+  }
+  for (const li of filters) {
+    li.addEventListener("click", handleFilterClick);
   }
 }
 
