@@ -1,5 +1,6 @@
 .search__header {
   width: 100%;
+  max-width: 1096px;
   height: 36px;
   display: flex;
   justify-content: space-between;
@@ -28,6 +29,7 @@
 }
 .transform-box {
   width: 100%;
+  max-width: 1096px;
   height: 0;
   background-color: $white;
   border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
@@ -75,7 +77,10 @@
   height: 240px;
 }
 .search__videos {
+  max-width: 1096px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 100%;
 }

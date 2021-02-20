@@ -125,7 +125,6 @@ export const deleteVideo = async (req, res) => {
     console.log(error);
   }
   res.redirect(routes.home);
-  // res.render("deleteVideo", { pageTitle: "Delete Video" });
 }
 
 // Register Video View
@@ -242,19 +241,17 @@ export const postVideoFilter = async (req, res) => {
     if (type === "uploadDate") {
       videos = await Video.find({ title: { $regex: term, $options: "i" }, createdAt: { $gte: value } }).populate("creator");
     } else if (type === "duration") {
-      foundVideos = await Video.find({ title: { $regex: term, $options: "i" } }).populate("creator");
+      const foundVideos = await Video.find({ title: { $regex: term, $options: "i" } }).populate("creator");
       for (const video of foundVideos) {
-        getVideoDuration(video.fileUrl)
-          .then((duration) => {
-            if (duration <= value && value === 4) {
-              videos.push(video);
-            } else if (duration >= value && value === 20) {
-              videos.push(video);
-            }
-          });
+        const duration = await getVideoDuration(video.fileUrl)
+        if (duration <= value && value === 240) {
+          videos.push(video);
+        } else if (duration >= value && value === 1200) {
+          videos.push(video);
+        }
       }
     } else if (type === "sortBy") {
-      videos = Video.find({ title: { $regex: term, $options: "i" } }).populate("creator");
+      videos = await Video.find({ title: { $regex: term, $options: "i" } }).populate("creator");
       if (value === "uploadDate") {
         videos.sort((a, b) => {
           if (a.createdAt < b.createdAt) {
