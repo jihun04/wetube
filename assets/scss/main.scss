@@ -36,6 +36,9 @@ button {
   &:active {
     background-color: #3498db;
   }
+  &:focus {
+    outline: none;
+  }
 }
 button.delete {
   background-color: $dark-red;

@@ -85,7 +85,6 @@ async function handleUpVoteBtnClick() {
 }
 
 function handleSuccessDelete(li) {
-  console.log(li, "lalalalal");
   const commentInnerNumber = parseInt(commentNumber.innerText.split("comment")[0]) - 1;
   commentNumber.innerText = `${commentInnerNumber > 0 ? `${commentInnerNumber} comments` : `${commentInnerNumber} comment`}`;
   commentList.removeChild(li);
