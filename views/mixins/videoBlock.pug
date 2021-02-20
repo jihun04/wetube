@@ -1,7 +1,7 @@
 mixin videoBlock(video = {})
     .videoBlock
         a(href=routes.videoDetail(video.id))
-            video.videoBlock__thumbnail(src=video.videoFile, controls=false)
+            video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=false)
         .videoBlock__info 
             if video.creator
                 a(href=routes.userDetail(video.creator.id))
@@ -13,8 +13,38 @@ mixin videoBlock(video = {})
                     else 
                         .videoBlock__u-avatar
             a(href=routes.videoDetail(video.id))
-                h4.videoBlock__title=video.title
-                if video.views === 1
-                    h6.videoBlock__views 1 view
-                else
-                    h6.videoBlock__views #{video.views} views
+                abbr.videoBlock__title(title=video.title)=video.title
+                h6.videoBlock__auther=video.creator.name
+                div
+                    if video.views === 1
+                        span.videoBlock__views 1 view
+                    else
+                        span.videoBlock__views #{video.views} views
+                    span  • 
+                    if Math.floor((Date.now() - video.createdAt) / 31622400000) > 0
+                        if Math.floor((Date.now() - video.createdAt) / 31622400000) === 1
+                            span #{Math.floor((Date.now() - video.createdAt) / 31622400000)} year ago
+                        else 
+                            span #{Math.floor((Date.now() - video.createdAt) / 31622400000)} years ago
+                    else if Math.floor((Date.now() - video.createdAt) / 2635200000) > 0
+                        if Math.floor((Date.now() - video.createdAt) / 2635200000) === 1
+                            span #{Math.floor((Date.now() - video.createdAt) / 2635200000)} month ago
+                        else 
+                            span #{Math.floor((Date.now() - video.createdAt) / 2635200000)} months ago
+                    else if Math.floor((Date.now() - video.createdAt) / 86400000) > 0
+                        if Math.floor((Date.now() - video.createdAt) / 86400000) === 1
+                            span #{Math.floor((Date.now() - video.createdAt) / 86400)} day ago
+                        else 
+                            span #{Math.floor((Date.now() - video.createdAt) / 86400000)} days ago
+                    else if Math.floor((Date.now() - video.createdAt) / 3600000) > 0
+                        if Math.floor((Date.now() - video.createdAt) / 3600000) === 1
+                            span #{Math.floor((Date.now() - video.createdAt) / 3600000)} hour ago
+                        else 
+                            span #{Math.floor((Date.now() - video.createdAt) / 3600000)} hours ago
+                    else if Math.floor((Date.now() - video.createdAt) / 60000) > 0
+                        if Math.floor((Date.now() - video.createdAt) / 60000) === 1
+                            span #{Math.floor((Date.now() - video.createdAt) / 60000)} minute ago
+                        else 
+                            span #{Math.floor((Date.now() - video.createdAt) / 60000)} minutes ago
+                    else 
+                        span just a moment ago

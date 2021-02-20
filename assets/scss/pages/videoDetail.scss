@@ -5,7 +5,7 @@
   margin: 0 22px;
   .video__info {
     width: 100%;
-    max-width: 850px;
+    max-width: 960px;
     margin-top: 20px;
     overflow: hidden;
     border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
@@ -74,7 +74,7 @@
   .video__comments {
     margin-top: 25px;
     width: 100%;
-    max-width: 850px;
+    max-width: 960px;
     display: flex;
     flex-direction: column;
     .video__comment-number {
@@ -82,7 +82,7 @@
     }
     .video__comment-form {
       width: 100%;
-      max-width: 850px;
+      max-width: 960px;
       margin-top: 25px;
       display: flex;
       .video__loggedUser-avatar {
@@ -107,7 +107,7 @@
       display: flex;
       flex-direction: column;
       margin-top: 25px;
-      max-width: 850px;
+      max-width: 960px;
       width: 100%;
       li {
         display: flex;
