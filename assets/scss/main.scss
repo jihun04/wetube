@@ -1,17 +1,21 @@
-html,
-body {
-  height: 100%;
+html {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
 }
 body {
+  position: relative;
   background-color: $grey;
   color: #030303;
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   font-size: 17px;
+  width: 100%;
+  min-height: 100%;
 }
 main {
   width: 100%;
-  min-height: 73vh;
-  padding: 0 22px;
+  min-height: 100%;
+  padding: 81px 22px 98.4px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;

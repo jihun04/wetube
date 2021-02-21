@@ -1,6 +1,10 @@
 .header {
   background-color: white;
   margin-bottom: 25px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
   .header__wrapper {
     display: flex;
     align-items: center;
@@ -124,6 +128,7 @@
           color: $black;
           font-size: 19px;
           position: relative;
+          bottom: -1px;
           &:nth-child(3) {
             left: -1.4px;
           }

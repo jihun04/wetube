@@ -16,19 +16,21 @@ block content
             .video__auther
                 div
                     a(href=routes.userDetail(video.creator.id))
-                        if video.creator.avatarUrl
-                            if video.creator.avatarUrl.substring(0,4) === "http"
-                                .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
-                            else                         
-                                .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
-                        else 
-                            .video__u-avatar
+                        div
+                            if video.creator.avatarUrl
+                                if video.creator.avatarUrl.substring(0,4) === "http"
+                                    .video__u-avatar(style=`background-image: url('${video.creator.avatarUrl}');`)
+                                else                         
+                                    .video__u-avatar(style=`background-image: url('/${video.creator.avatarUrl}');`)
+                            else 
+                                .video__u-avatar
                         span=video.creator.name
                     if loggedUser
                         if String(video.creator._id) === String(loggedUser._id)
                             a(href=routes.editVideo(video.id))
                                 button Edit video
-                p.video__description=video.description
+                p.video__description#jsVideoDescription=video.description
+                span#showMoreBtn Show more
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number 1 comment

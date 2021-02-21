@@ -64,7 +64,6 @@
   width: 100%;
   font-size: 17px;
   & > a {
-    display: block;
     margin-right: 15px;
     video {
       background-color: black;
@@ -77,11 +76,12 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    overflow: hidden;
     width: 100%;
     a {
+      width: 100%;
       display: flex;
       align-items: flex-start;
-      overflow: hidden;
       &:not(:nth-child(2)) {
         padding-bottom: 3px;
         width: 100%;
@@ -96,6 +96,7 @@
       &:last-child {
         height: 36px;
         white-space: pre-wrap;
+        overflow-wrap: break-word;
       }
     }
     .videoBlock__u-avatar {
@@ -111,12 +112,15 @@
     .videoBlock__description,
     .videoBlock__title {
       text-decoration: none;
-    }
-    .videoBlock__title {
       width: 100%;
-      white-space: nowrap;
+    }
+    .videoBlock__auther,
+    .videoBlock__title {
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .videoBlock__title {
       font-weight: 400;
       font-size: 20px;
       margin-bottom: 8px;

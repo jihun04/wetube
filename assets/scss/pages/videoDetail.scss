@@ -1,37 +1,49 @@
 .video-detail__container {
+  max-width: 960px;
+  width: 100%;
   .video__info {
     width: 100%;
     max-width: 960px;
-    margin-top: 20px;
+    margin-top: 17px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
     .video__title,
     .video__description {
-      word-break: break-all;
       overflow: hidden;
       text-overflow: ellipsis;
+      padding-bottom: 3px;
     }
     .video__title {
-      font-size: 24px;
+      font-size: 22px;
+      white-space: nowrap;
       font-weight: 400;
-      margin-bottom: 17px;
+      margin-bottom: 15px;
     }
     .wrap-othr {
-      margin-bottom: 20px;
+      margin-bottom: 17px;
       color: rgba($color: #444444, $alpha: 0.6);
     }
     .video__auther {
       width: 100%;
       border-top: 1px solid rgba($color: #444444, $alpha: 0.12);
-      padding-top: 20px;
-      margin-bottom: 10px;
-      div {
+      padding-top: 17px;
+      margin-bottom: 17px;
+      & > div {
         display: flex;
         justify-content: space-between;
+        width: 100%;
         a {
-          width: fit-content;
           display: flex;
           align-items: center;
+          &:first-child {  
+            width: fit-content;
+            overflow: hidden;
+          }
+          &:last-child {
+            margin-left: 15px;
+          }
           .video__u-avatar {
             width: 50px;
             height: 50px;
@@ -42,19 +54,23 @@
             background-color: $dark-grey;
           }
           span {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
             font-size: 18px;
             font-weight: 500;
             color: #030303;
+            padding-bottom: 3px;
           }
         }
         button {
+          white-space: nowrap;
           width: fit-content;
           display: flex;
           justify-content: center;
           align-items: center;
           padding: 10px 16px;
           border: none;
-          margin: 12px 0;
           border-radius: 2px;
           &:focus {
             outline: none;
@@ -64,7 +80,21 @@
     }
     .video__description {
       margin-left: 64px;
-      padding-bottom: 20px;
+      padding-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .video__description--open {
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+    #showMoreBtn {
+      color: #606060;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 64px;
+      margin-top: 8px;
     }
   }
   .video__comments {

@@ -4,7 +4,7 @@ include mixins/videoBlock
 block content
     .user-profile
         .user-profile__header
-            if typeof user.avatarUrl !== "undefined"
+            if user.avatarUrl
                 if user.avatarUrl.substring(0,4) === "http"
                     .u-avatar(style=`background-image: url('${user.avatarUrl}');`)
                 else

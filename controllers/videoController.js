@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+import User from "../models/User";
 import getVideoDuration from "get-video-duration";
 
 export const home = async (req, res) => {
@@ -20,6 +21,7 @@ export const search = async (req, res) => {
   let videos = [];
   try {
     videos = await Video.find({ title: { $regex: searchingBy, $options: "i" } }).populate("creator");
+    users = await User.find({ name: { $regex: searchingBy, $options: "i" } })
   } catch (error) {
     console.log(error);
   }
