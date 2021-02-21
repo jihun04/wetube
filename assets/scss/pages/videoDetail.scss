@@ -1,6 +1,7 @@
 .video-detail__container {
   max-width: 960px;
   width: 100%;
+  padding: 25px 22px;
   .video__info {
     width: 100%;
     max-width: 960px;
@@ -152,10 +153,20 @@
         }
         .comment__text {
           width: 100%;
-          .comment__username {
-            font-weight: 500;
-            margin-right: 5px;
-            color: #030303;
+          overflow: hidden;
+          a {
+            display: flex;
+            width: 100%;
+            .comment__username {
+              width: 100%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              font-weight: 500;
+              margin-right: 5px;
+              color: #030303;
+              padding-bottom: 3px;
+            }
           }
           span:nth-child(2) {
             color: rgba($color: #444444, $alpha: 0.6);
@@ -164,6 +175,7 @@
             margin-top: 7px;
             word-break: break-all;
             line-height: 20px;
+            padding-bottom: 3px;
           }
           .comment__input {
             background-color: rgba($color: #000000, $alpha: 0);

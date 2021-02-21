@@ -1,40 +1,153 @@
 .user-profile {
-  margin: 0 auto;
+  background-color: $dark-white;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .user-profile__header {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  justify-content: flex-start;
+  .user-profile__header,
+  .user-profile__navigation-bar {
+      background-color: $white;
+      width: 100%;
+  }
+  .user-banner {
     overflow: hidden;
     width: 100%;
-    .user-profile__username {
+    height: 122.738px;
+    //  170 170 170 ~  190 190 190
+    .user-banner-img {
+      height: 100%;
       width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 20px;
-      margin-top: 10px;
-      padding-bottom: 3px;
+      background: linear-gradient(36deg, #aaaaaa, #bebebe);
+      background-position: center;
+      background-size: cover;
     }
   }
-  .user-profile__btns {
+  .user-profile__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .user-box {
+      display: flex;
+      padding: 16px 107px 4px 107px;
+      width: 100%;
+      height: fit-content;
+      .wrap-u-avatar {
+        .u-avatar {
+          background-position: center;
+          background-size: cover;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background-color: $dark-grey;
+          margin-right: 25px;
+        }
+      }
+      .userInfo {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        & > div {
+          min-width: fit-content;
+        }
+        .wrap-username {
+          .user-profile__username {
+            width: 270.75px;
+            word-break: break-all;
+            font-size: 24px;
+          }
+        }
+        .user-profile__btns {
+          display: flex;
+          align-items: center;
+          a {
+            button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              white-space: nowrap;
+              width: fit-content;
+              padding: 10px 16px;
+              border: none;
+              border-radius: 2px;
+            }
+            &:not(:last-child) {
+              margin-right: 8px;
+            }
+          }
+        }
+        @media screen and (max-width: 950px) {
+          .user-profile__btns {
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+  }
+  .user-profile__navigation-bar {
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 0 59px;
+    .navigation-bar__wrap-navigation {
+      display: flex;
+      align-items: center;
+      .previousBtn,
+      .nextBtn {
+        cursor: pointer;
+        button {
+          font-size: 15px;
+          width: 48px;
+          height: 48px;
+          border: none;
+          background-color: rgba($color: #000000, $alpha: 0);
+          color: #606060;
+        }
+      }
+      .navigation-bar__list {
+        display: flex;
+        overflow: hidden;
+        li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-transform: uppercase;
+          height: 48px;
+          width: fit-content;
+          padding: 0 32px;
+          white-space: nowrap;
+          font-weight: 600;
+          color: #606060;
+        }
+      }
+    }
+    .selected-bar {
+      margin: 0 48px;
+      width: 115.325px;
+      border-bottom: 2px solid $selected-black;
+    }
+  }
+  .user-profile__video-list {
+    width: 100%;
+    padding: 0 107px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    a {
-      display: block;
-      margin-top: 15px;
-      width: 100%;
+    align-items: flex-start;
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($color: #444444, $alpha: 0.12);
     }
-  }
-  .uploaded-videos {
-    margin-top: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    .video-list__title {
+      display: block;
+      margin-bottom: 25px;
+    }
+    .video-list__videos {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      height: 227.975px;
+      overflow: hidden;
+    }
   }
 }
