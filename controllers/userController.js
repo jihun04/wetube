@@ -136,14 +136,12 @@ export const getEditProfile = (req, res) => {
 
 export const postEditProfile = async (req, res) => {
   const {
-    body: { name, email },
-    file
+    body: { name, email }
   } = req;
   try {
     await User.findByIdAndUpdate(req.user._id, {
       name,
-      email,
-      avatarUrl: file ? file.path : req.user.avatarUrl
+      email
     });
     res.redirect(routes.me);
   } catch (error) {
@@ -170,3 +168,37 @@ export const postChangePassword = async (req, res) => {
     res.redirect(`/users${routes.changePassword}`);
   }
 };
+
+export const postUploadAvatar = async (req, res) => {
+  const {
+    file,
+    user
+  } = req;
+  try {
+    user.avatarUrl = file.path;
+    user.save();
+    res.json(file.path);
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
+export const postUploadBanner = async (req, res) => {
+  const {
+    file,
+    user
+  } = req;
+  try {
+    user.bannerUrl = file.path;
+    user.save();
+    res.json(file.path);
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+}

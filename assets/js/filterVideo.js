@@ -46,35 +46,36 @@ function paintVideos(videos) {
       videoViews.innerText = `${video.views} views`;
     }
     videoDot.innerText = " • ";
-    if (Math.floor((Date.now() - video.createdAt) / 31622400000) > 0) {
-      if (Math.floor((Date.now() - video.createdAt) / 31622400000) === 1) {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 31622400000)} year ago`;
+    console.log(new Date(video.createdAt));
+    if (Math.floor((Date.now() - new Date(video.createdAt)) / 31622400000) > 0) {
+      if (Math.floor((Date.now() - new Date(video.createdAt)) / 31622400000) === 1) {
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 31622400000)} year ago`;
       } else {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 31622400000)} years ago`;
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 31622400000)} years ago`;
       }
-    } else if (Math.floor((Date.now() - video.createdAt) / 2635200000) > 0) {
-      if (Math.floor((Date.now() - video.createdAt) / 2635200000) === 1) {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 2635200000)} month ago`;
+    } else if (Math.floor((Date.now() - new Date(video.createdAt)) / 2635200000) > 0) {
+      if (Math.floor((Date.now() - new Date(video.createdAt)) / 2635200000) === 1) {
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 2635200000)} month ago`;
       } else {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 2635200000)} months ago`;
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 2635200000)} months ago`;
       }
-    } else if (Math.floor((Date.now() - video.createdAt) / 86400000) > 0) {
-      if (Math.floor((Date.now() - video.createdAt) / 86400000) === 1) {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 86400000)} day ago`;
+    } else if (Math.floor((Date.now() - new Date(video.createdAt)) / 86400000) > 0) {
+      if (Math.floor((Date.now() - new Date(video.createdAt)) / 86400000) === 1) {
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 86400000)} day ago`;
       } else {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 86400000)} days ago`;
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 86400000)} days ago`;
       }
-    } else if (Math.floor((Date.now() - video.createdAt) / 3600000) > 0) {
-      if (Math.floor((Date.now() - video.createdAt) / 3600000) === 1) {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 3600000)} hour ago`;
+    } else if (Math.floor((Date.now() - new Date(video.createdAt)) / 3600000) > 0) {
+      if (Math.floor((Date.now() - new Date(video.createdAt)) / 3600000) === 1) {
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 3600000)} hour ago`;
       } else {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 3600000)} hours ago`;
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 3600000)} hours ago`;
       }
-    } else if (Math.floor((Date.now() - video.createdAt) / 60000) > 0) {
-      if (Math.floor((Date.now() - video.createdAt) / 60000) === 1) {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 60000)} minute ago`;
+    } else if (Math.floor((Date.now() - new Date(video.createdAt)) / 60000) > 0) {
+      if (Math.floor((Date.now() - new Date(video.createdAt)) / 60000) === 1) {
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 60000)} minute ago`;
       } else {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 60000)} minutes ago`;
+        videoDate.innerText = `${Math.floor((Date.now() - new Date(video.createdAt)) / 60000)} minutes ago`;
       }
     } else {
       videoDate.innerText = "just a moment ago";
@@ -191,7 +192,7 @@ function handleFilterClick() {
   if (selectedFilter) {
     selectedFilter.classList.remove("li--selected");
   }
-  target.classList.add("li-selected");
+  target.classList.add("li--selected");
 }
 
 function init() {

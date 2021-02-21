@@ -1,6 +1,7 @@
 .search__container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   padding: 25px 22px;
 }
@@ -72,9 +73,9 @@
             font-weight: 600;
           }
         }
-        .li--selected {
-          font-weight: 600;
-        }
+      }
+      .li--selected {
+        font-weight: 600;
       }
     }
   }

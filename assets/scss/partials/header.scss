@@ -65,6 +65,7 @@
             border: 1px solid #CCCCCC;
             border-radius: 2px;
             width: 100%;
+            height: 33px;
             box-shadow: inset 0 1px 2px 0 rgb(238, 238, 238);
             &:focus {
               box-shadow: inset 0 1px 2px 0 rgba($color: #000000, $alpha: 0.3)

@@ -2,10 +2,41 @@ extends layouts/main
 
 block content
     .form-container
+        form.fileUpload(enctype="multipart/form-data")
+            .avatarUpload
+                .upload-header
+                    span Profile picture
+                    span Remove
+                .u-avatar-box 
+                    if loggedUser.avatarUrl
+                        if loggedUser.avatarUrl.substring(0,4) === "http"
+                            .u-avatar-img(style=`background-image: url('${loggedUser.avatarUrl}');`)
+                        else
+                            .u-avatar-img(style=`background-image: url('/${loggedUser.avatarUrl}');`)
+                    else
+                        .u-avatar-img
+                    input(type="file", name="avatar", accept="image/*")
+                    .appearIcon 
+                        i.fas.fa-camera
+            .bannerUpload 
+                .upload-header
+                    span Banner image
+                    span Remove
+                .u-banner-box
+                    .wrap-u-banner-img
+                        if loggedUser.bannerUrl
+                            if loggedUser.bannerUrl.substring(0,4) === "http"
+                                .u-banner-img(style=`background-image: url('${loggedUser.bannerUrl}');`)
+                            else
+                                .u-banner-img(style=`background-image: url('/${loggedUser.bannerUrl}');`)
+                        else 
+                            .u-banner-img
+                    input(type="file", name="banner", accept="image/*")
+                    .appearIcon 
+                        i.fas.fa-camera
         form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
-            .fileUpload
-                label(for="avatar") Avatar
-                input(type="file", id="avatar", name="avatar", accept="image/*")
-            input(type="text", placeholder="Name", name="name", value=loggedUser.name)
-            input(type="email", placeholder="Email", name="email", value=loggedUser.email)
+            span Username
+            input(type="text", name="name", value=loggedUser.name)
+            span Email
+            input(type="email", name="email", value=loggedUser.email)
             input(type="submit", value="Update Profile")

@@ -5,3 +5,4 @@ import "./addComment";
 import "./deleteVideo";
 import "./filterVideo";
 import "./showMore";
+import "./uploadImage";

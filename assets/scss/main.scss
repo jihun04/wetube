@@ -22,8 +22,7 @@ main {
 }
 button,
 input:not([type="file"]),
-textarea,
-.fileUpload {
+textarea {
   width: 100%;
   height: 38px;
   border: 2px solid $dark-grey;

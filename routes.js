@@ -45,6 +45,8 @@ const DELETE_COMMENT = "/:id/comment/delete";
 const REGISTER_UPVOTE = "/comment/upvote";
 const EDIT_COMMENT = "/comment/edit";
 const VIDEO_FILTER = "/filter/video";
+const UPLOADAVATAR = "/upload/avatar";
+const UPLOADBANNER = "/upload/banner";
 
 const routes = {
   home: HOME,
@@ -98,7 +100,9 @@ const routes = {
   deleteComment: DELETE_COMMENT,
   registerUpVote: REGISTER_UPVOTE,
   editComment: EDIT_COMMENT,
-  videoFilter: VIDEO_FILTER
+  videoFilter: VIDEO_FILTER,
+  uploadAvatar: UPLOADAVATAR,
+  uploadBanner: UPLOADBANNER
 };
 
 export default routes;
