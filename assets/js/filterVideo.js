@@ -60,7 +60,7 @@ function paintVideos(videos) {
       }
     } else if (Math.floor((Date.now() - video.createdAt) / 86400000) > 0) {
       if (Math.floor((Date.now() - video.createdAt) / 86400000) === 1) {
-        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 86400)} day ago`;
+        videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 86400000)} day ago`;
       } else {
         videoDate.innerText = `${Math.floor((Date.now() - video.createdAt) / 86400000)} days ago`;
       }
