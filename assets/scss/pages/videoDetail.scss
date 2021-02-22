@@ -42,7 +42,7 @@
             width: fit-content;
             overflow: hidden;
           }
-          &:last-child {
+          &:not(:first-child) {
             margin-left: 15px;
           }
           .video__u-avatar {

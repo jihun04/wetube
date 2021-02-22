@@ -3,12 +3,12 @@ include mixins/videoBlock
 
 block content
     .user-profile
-        .user-banner 
+        .user-banner#jsUserBanner
             if user.bannerUrl 
                 .user-banner-img(style=`background-image: url('/${user.bannerUrl}');`)
             else 
                 .user-banner-img
-        .user-profile__header
+        .user-profile__header#jsPofileHeader
             .user-box
                 .wrap-u-avatar
                     if user.avatarUrl

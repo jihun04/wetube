@@ -6,3 +6,4 @@ import "./deleteVideo";
 import "./filterVideo";
 import "./showMore";
 import "./uploadImage";
+import "./scrollUserDetail";
