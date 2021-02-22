@@ -113,6 +113,9 @@
       .navigation-bar__list {
         display: flex;
         overflow: hidden;
+        align-items: flex-end;
+        justify-content: flex-start;
+        position: relative;
         li {
           display: flex;
           justify-content: center;
@@ -124,13 +127,22 @@
           white-space: nowrap;
           font-weight: 600;
           color: #606060;
+          cursor: pointer;
+          &:hover {
+            color: #030303;
+          }
+        }
+        .navigation-item--selected {
+          color: #030303;
+        }
+        .selected-bar {
+          position: absolute;
+          width: 115.325px;
+          border-bottom: 2px solid $selected-black;
+          transition: transform 0.2s ease-in-out,
+            width 0.2s ease-in-out;
         }
       }
-    }
-    .selected-bar {
-      margin: 0 48px;
-      width: 115.325px;
-      border-bottom: 2px solid $selected-black;
     }
   }
   .user-profile__video-list {

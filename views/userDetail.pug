@@ -33,13 +33,14 @@ block content
                     button
                         i.fas.fa-chevron-left
                 ul.navigation-bar__list#jsNavigationList
-                    li#home
+                    .selected-bar#jsNavigationSelectedBar
+                    li#home.navigation-item--selected
                         span Home 
                     li#videos
                         span Videos
                     li#playlists
                         span Playlists
-                    li#Channels
+                    li#channels
                         span Channels
                     li#discussion
                         span Discussion
@@ -50,8 +51,6 @@ block content
                 .nextBtn.hidden#jsNextBtn
                     button
                         i.fas.fa-chevron-right
-            .selected-bar
-            //- transform, scaleX
         .uploads.user-profile__video-list
             span.video-list__title Uploads
             .video-list__videos
