@@ -51,9 +51,12 @@ block content
                 .nextBtn.hidden#jsNextBtn
                     button
                         i.fas.fa-chevron-right
-        .uploads.user-profile__video-list
+        .uploads.user-profile__video-list#jsUploadsVideoList
             span.video-list__title Uploads
-            .video-list__videos
+            .videosPreviousBtn.hidden#jsUploadsVideosPreviousBtn
+                button 
+                    i.fas.fa-chevron-left
+            .video-list__videos#jsUploadsVideos
                 each item in user.videos
                     +videoBlock({
                         id: item.id,
@@ -66,3 +69,61 @@ block content
                         createdAt: item.createdAt,
                         div: "userDetail"
                     })
+                    +videoBlock({
+                        id: item.id,
+                        title: item.title,
+                        views: item.views,
+                        comments: item.comments,
+                        fileUrl: item.fileUrl,
+                        description: item.description,
+                        creator: user,
+                        createdAt: item.createdAt,
+                        div: "userDetail"
+                    })
+                    +videoBlock({
+                        id: item.id,
+                        title: item.title,
+                        views: item.views,
+                        comments: item.comments,
+                        fileUrl: item.fileUrl,
+                        description: item.description,
+                        creator: user,
+                        createdAt: item.createdAt,
+                        div: "userDetail"
+                    })
+                    +videoBlock({
+                        id: item.id,
+                        title: item.title,
+                        views: item.views,
+                        comments: item.comments,
+                        fileUrl: item.fileUrl,
+                        description: item.description,
+                        creator: user,
+                        createdAt: item.createdAt,
+                        div: "userDetail"
+                    })
+                    +videoBlock({
+                        id: item.id,
+                        title: item.title,
+                        views: item.views,
+                        comments: item.comments,
+                        fileUrl: item.fileUrl,
+                        description: item.description,
+                        creator: user,
+                        createdAt: item.createdAt,
+                        div: "userDetail"
+                    })
+                    +videoBlock({
+                        id: item.id,
+                        title: item.title,
+                        views: item.views,
+                        comments: item.comments,
+                        fileUrl: item.fileUrl,
+                        description: item.description,
+                        creator: user,
+                        createdAt: item.createdAt,
+                        div: "userDetail"
+                    })
+            .videosNextBtn.hidden#jsUploadsVideosNextBtn
+                button 
+                    i.fas.fa-chevron-right

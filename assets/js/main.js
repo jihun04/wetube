@@ -8,3 +8,4 @@ import "./showMore";
 import "./uploadImage";
 import "./scrollUserDetail";
 import "./userDetailNavigation";
+import "./userDetailVideos";

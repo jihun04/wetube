@@ -5,16 +5,6 @@ const navigationBar = document.getElementById("jsNavigationBar"),
   navigationItems = document.querySelectorAll("#jsNavigationList li"),
   selectedBar = document.getElementById("jsNavigationSelectedBar");
 
-const widthList = [
-  115.33,
-  124.46,
-  147.7,
-  153.46,
-  164.99,
-  122.09,
-  128.49
-]
-
 function loadBtns() {
   const listWidth = navigationList.scrollWidth;
   const barWidth = navigationBar.scrollWidth;
@@ -24,8 +14,7 @@ function loadBtns() {
 }
 
 function handleListScroll() {
-  console.log(navigationList.scrollLeft, navigationList.offsetWidth - navigationBar.scrollWidth);
-  if (navigationList.scrollLeft >= navigationList.scrollWidth - navigationBar.scrollWidth) {
+  if (navigationList.scrollLeft >= navigationList.scrollWidth - navigationList.offsetWidth - 1) {
     nextBtn.classList.add("hidden");
     previousBtn.classList.remove("hidden");
   } else if (navigationList.scrollLeft <= 0) {
