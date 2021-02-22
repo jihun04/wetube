@@ -91,11 +91,13 @@
       overflow-wrap: break-word;
     }
     #showMoreBtn {
+      font-size: 15px;
       color: #606060;
       font-weight: 600;
       cursor: pointer;
       margin-left: 64px;
       margin-top: 8px;
+      text-transform: uppercase;
     }
   }
   .video__comments {

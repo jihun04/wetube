@@ -73,7 +73,7 @@ block content
                                     span #{Math.floor((Date.now() - comment.createdAt) / 2635200000)} months ago
                             else if Math.floor((Date.now() - comment.createdAt) / 86400000) > 0
                                 if Math.floor((Date.now() - comment.createdAt) / 86400000) === 1
-                                    span #{Math.floor((Date.now() - comment.createdAt) / 86400)} day ago
+                                    span #{Math.floor((Date.now() - comment.createdAt) / 86400000)} day ago
                                 else 
                                     span #{Math.floor((Date.now() - comment.createdAt) / 86400000)} days ago
                             else if Math.floor((Date.now() - comment.createdAt) / 3600000) > 0

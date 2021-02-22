@@ -7,3 +7,4 @@ import "./filterVideo";
 import "./showMore";
 import "./uploadImage";
 import "./scrollUserDetail";
+import "./userDetailNavigation";

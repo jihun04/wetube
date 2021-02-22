@@ -27,12 +27,12 @@ block content
                                 button Edit Profile
                             a(href=`/users${routes.changePassword}`)
                                 button Change Password
-        nav.user-profile__navigation-bar 
+        nav.user-profile__navigation-bar#jsNavigationBar
             .navigation-bar__wrap-navigation
-                .previousBtn.hidden
+                .previousBtn.hidden#jsPreviousBtn
                     button
                         i.fas.fa-chevron-left
-                ul.navigation-bar__list
+                ul.navigation-bar__list#jsNavigationList
                     li#home
                         span Home 
                     li#videos
@@ -47,7 +47,7 @@ block content
                         span About
                     li#search
                         span Search
-                .nextBtn.hidden
+                .nextBtn.hidden#jsNextBtn
                     button
                         i.fas.fa-chevron-right
             .selected-bar
