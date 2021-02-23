@@ -14,4 +14,8 @@ const PORT = process.env.PORT || 4010;
 const handleListening = () =>
   console.log(`✅  Listening on: http://localhost:${PORT}`);
 
-app.listen(process.env.PORT ? `${PORT}, "0.0.0.0"` : PORT, handleListening);
+if (process.env.PORT) {
+  app.listen(PORT, "0.0.0.0", handleListening);
+} else {
+  app.listen(PORT, handleListening);
+}
