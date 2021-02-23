@@ -61,5 +61,8 @@
     "tunnel": "lt --port 4000",
     "start": "PRODUCTION=true node build/init.js",
     "prestart": "npm run build"
+  },
+  "engines": {
+    "node": "14.15.4"
   }
 }
