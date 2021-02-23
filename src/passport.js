@@ -13,7 +13,7 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `http://localhost:4000${routes.githubCallback}`
+      callbackURL: `https://quiet-waters-36996.herokuapp.com${routes.githubCallback}`
     },
     githubLoginCallback
   )
@@ -24,7 +24,7 @@ passport.use(
     {
       clientID: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
-      callbackURL: `http://localhost:4000${routes.facebookCallback}`
+      callbackURL: `https://quiet-waters-36996.herokuapp.com${routes.facebookCallback}`
     },
     facebookLoginCallback
   )
@@ -35,7 +35,7 @@ passport.use(
     {
       clientID: process.env.KAKAO_ID,
       clientSecret: process.env.KAKAO_SECRET,
-      callbackURL: `http://localhost:4000${routes.kakaoCallback}`
+      callbackURL: `https://quiet-waters-36996.herokuapp.com${routes.kakaoCallback}`
     },
     kakaoLoginCallback
   )
