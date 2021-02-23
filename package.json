@@ -4,6 +4,7 @@
   "description": "Cloning youtube with VanillaJS and NodeJS",
   "author": "jihun04",
   "dependencies": {
+    "@babel/cli": "^7.13.0",
     "@babel/core": "^7.12.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
@@ -41,7 +42,7 @@
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
     "tunnel": "lt --port 4000",
-    "start": "node build/init.js",
+    "start": "PRODUCTION=true node build/init.js",
     "prestart": "npm run build"
   },
   "devDependencies": {
