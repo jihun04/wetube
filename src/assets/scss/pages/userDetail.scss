@@ -147,6 +147,10 @@
         height: 0;
       }
     }
+    &.user-profile__navigation-bar--fixed {
+      position: fixed;
+      z-index: 10;
+    }
   }
   .user-profile__video-list {
     position: relative;

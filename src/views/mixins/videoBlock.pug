@@ -1,8 +1,8 @@
 mixin videoBlock(video = {})
     if video.div === "search"
-        .videoBlock--search
+        .videoBlock--search.jsVideoBlock
             a(href=routes.videoDetail(video.id))
-                video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=false)
+                video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=false, muted=true)
             .videoBlock__info
                 a(href=routes.videoDetail(video.id))
                     abbr.videoBlock__title(title=video.title)=video.title
@@ -53,9 +53,9 @@ mixin videoBlock(video = {})
                     abbr.videoBlock__description(title=video.description)=video.description
     else 
         if video.div !== "userDetail"
-            .videoBlock
+            .videoBlock.jsVideoBlock
                 a(href=routes.videoDetail(video.id))
-                    video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=false)
+                    video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=false, muted=true)
                 .videoBlock__info 
                     a(href=routes.userDetail(video.creator.id))
                         if video.creator.avatarUrl
@@ -102,9 +102,9 @@ mixin videoBlock(video = {})
                             else 
                                 span just a moment ago
         else
-            .videoBlock.videoBlock--userDetail
+            .videoBlock.videoBlock--userDetail.jsVideoBlock
                 a(href=routes.videoDetail(video.id))
-                    video.videoBlock__thumbnail--userDetail(src=`/${video.fileUrl}`, controls=false)
+                    video.videoBlock__thumbnail--userDetail(src=`/${video.fileUrl}`, controls=false, muted=true)
                 .videoBlock__info 
                     a(href=routes.videoDetail(video.id))
                         abbr.videoBlock__title(title=video.title)=video.title

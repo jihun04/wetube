@@ -9,3 +9,4 @@ import "./uploadImage";
 import "./scrollUserDetail";
 import "./userDetailNavigation";
 import "./userDetailVideos";
+import "./videoBlock";
