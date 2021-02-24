@@ -33,7 +33,7 @@ block content
                     button
                         i.fas.fa-chevron-left
                 ul.navigation-bar__list#jsNavigationList
-                    .selected-bar#jsNavigationSelectedBar
+                    .selected-bar#jsNavigationSelectedBar(class=`${query === "videos" ? "selected-bar--videos" : ""}${query === "playlists" ? "selected-bar--playlists" : ""}${query === "channels" ? "selected-bar--channels" : ""}${query === "discussion" ? "selected-bar--discussion" : ""}${query === "about" ? "selected-bar--about" : ""}${query === "search" ? "selected-bar--search" : ""}`)
                     li#home(class=`${query === "home" ? "navigation-item--selected" : ""}`)
                         span Home 
                     li#videos(class=`${query === "videos" ? "navigation-item--selected" : ""}`)

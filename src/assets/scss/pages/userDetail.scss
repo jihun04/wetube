@@ -142,6 +142,30 @@
           transition: transform 0.2s ease-in-out,
             width 0.2s ease-in-out;
         }
+        .selected-bar--videos {
+          transform: translateX(115.33px);
+          width: 124.46px;
+        }
+        .selected-bar--playlists {
+          transform: translateX(239.79px);
+          width: 147.7px;
+        }
+        .selected-bar--channels {
+          transform: translateX(387.49px);
+          width: 153.46px;
+        }
+        .selected-bar--discussion {
+          transform: translateX(540.95px);
+          width: 164.99px;
+        }
+        .selected-bar--about {
+          transform: translateX(705.94px);
+          width: 122.09px;
+        }
+        .selected-bar--search {
+          transform: translateX(828.03px);
+          width: 128.49px;
+        }
       }
       .navigation-bar__list::-webkit-scrollbar {
         height: 0;
