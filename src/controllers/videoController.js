@@ -202,10 +202,10 @@ export const postRegisterUpVote = async (req, res) => {
   try {
     const comment = await Comment.findById(commentId);
     if (direction) {
-      comment.upvote += 1;
+      comment.upVote += 1;
       user.upVotes.push(comment.id);
     } else {
-      comment.upvote -= 1;
+      comment.upVote -= 1;
       user.upVotes.splice(comment.id, 1);
     }
     comment.save();

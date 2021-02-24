@@ -96,11 +96,11 @@ block content
                                 if loggedUser.upVotes.map(x => String(x)).includes(comment.id)
                                     button.comment__up-vote-btn.comment__up-vote-btn--active
                                         i.fas.fa-chevron-up
-                                        span.up-vote-number=comment.upvote
+                                        span.up-vote-number=comment.upVote
                                 else
                                     button.comment__up-vote-btn
                                         i.fas.fa-chevron-up
-                                        span.up-vote-number=comment.upvote
+                                        span.up-vote-number=comment.upVote
                                 if comment.creator.id === String(loggedUser._id)
                                     div 
                                         button.comment__edit-btn 
