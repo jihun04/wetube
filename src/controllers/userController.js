@@ -124,17 +124,21 @@ export const logout = (req, res) => {
 };
 
 export const getMe = async (req, res) => {
+  const {
+    query: { query }
+  } = req;
   const user = await User.findById(req.user._id).populate("videos");
-  res.render("userDetail", { pageTitle: "User Detail", user });
+  res.render("userDetail", { pageTitle: "User Detail", user, query: query ? query : "home" });
 };
 
 export const userDetail = async (req, res) => {
   const {
-    params: { id }
+    params: { id },
+    query: { query }
   } = req;
   try {
     const user = await User.findById(id).populate("videos");
-    res.render("userDetail", { pageTitle: "User Detail", user });
+    res.render("userDetail", { pageTitle: "User Detail", user, query });
   } catch (error) {
     req.flash("error", "User not foud");
     res.redirect(routes.home);

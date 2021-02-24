@@ -34,41 +34,58 @@ block content
                         i.fas.fa-chevron-left
                 ul.navigation-bar__list#jsNavigationList
                     .selected-bar#jsNavigationSelectedBar
-                    li#home.navigation-item--selected
+                    li#home(class=`${query === "home" ? "navigation-item--selected" : ""}`)
                         span Home 
-                    li#videos
+                    li#videos(class=`${query === "videos" ? "navigation-item--selected" : ""}`)
                         span Videos
-                    li#playlists
+                    li#playlists(class=`${query === "playlists" ? "navigation-item--selected" : ""}`)
                         span Playlists
-                    li#channels
+                    li#channels(class=`${query === "channels" ? "navigation-item--selected" : ""}`)
                         span Channels
-                    li#discussion
+                    li#discussion(class=`${query === "discussion" ? "navigation-item--selected" : ""}`)
                         span Discussion
-                    li#about
+                    li#about(class=`${query === "about" ? "navigation-item--selected" : ""}`)
                         span About
-                    li#search
+                    li#search(class=`${query === "search" ? "navigation-item--selected" : ""}`)
                         span Search
                 .nextBtn.hidden#jsNextBtn
                     button
                         i.fas.fa-chevron-right
-        .uploads.user-profile__video-list#jsUploadsVideoList
-            span.video-list__title Uploads
-            .videosPreviousBtn.hidden#jsUploadsVideosPreviousBtn
-                button 
-                    i.fas.fa-chevron-left
-            .video-list__videos#jsUploadsVideos
-                each item in user.videos
-                    +videoBlock({
-                        id: item.id,
-                        title: item.title,
-                        views: item.views,
-                        comments: item.comments,
-                        fileUrl: item.fileUrl,
-                        description: item.description,
-                        creator: user,
-                        createdAt: item.createdAt,
-                        div: "userDetail"
-                    })
-            .videosNextBtn.hidden#jsUploadsVideosNextBtn
-                button 
-                    i.fas.fa-chevron-right
+        if query === "home"
+            .uploads.user-profile__video-list#jsUploadsVideoList
+                span.video-list__title Uploads
+                .videosPreviousBtn.hidden#jsUploadsVideosPreviousBtn
+                    button 
+                        i.fas.fa-chevron-left
+                .video-list__videos#jsUploadsVideos
+                    each item in user.videos
+                        +videoBlock({
+                            id: item.id,
+                            title: item.title,
+                            views: item.views,
+                            comments: item.comments,
+                            fileUrl: item.fileUrl,
+                            description: item.description,
+                            creator: user,
+                            createdAt: item.createdAt,
+                            div: "userDetail"
+                        })
+                .videosNextBtn.hidden#jsUploadsVideosNextBtn
+                    button 
+                        i.fas.fa-chevron-right
+        else if query === "videos"
+            .videos-box
+                span.videos-box__title Uploads
+                .videos-box__videos
+                    each item in user.videos
+                        +videoBlock({
+                            id: item.id,
+                            title: item.title,
+                            views: item.views,
+                            comments: item.comments,
+                            fileUrl: item.fileUrl,
+                            description: item.description,
+                            creator: user,
+                            createdAt: item.createdAt,
+                            div: "userDetail"
+                        })

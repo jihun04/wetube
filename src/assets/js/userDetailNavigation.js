@@ -50,7 +50,7 @@ function handleNvigationItemClick() {
   selectedBar.style.width = `${target.scrollWidth}px`;
   target.classList.add("navigation-item--selected");
   oldItem.classList.remove("navigation-item--selected");
-  window.location.href = window.location.href + `?query=${target.id}`
+  window.location.href = window.location.href.split("?query")[0] + `?query=${target.id}`
 }
 
 function init() {
