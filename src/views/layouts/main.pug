@@ -8,22 +8,21 @@ html
         title #{pageTitle} - #{siteName}
         link(rel="stylesheet", href="/static/main.css")
     body
-        if message
-            if message.error 
-                +message({
-                    type: "error",
-                    text: message.error
-                })
-            else if message.success 
-                +message({
-                    type: "success",
-                    text: message.success
-                })
-            else if message.info
-                +message({
-                    type: "info",
-                    text: message.info
-                })
+        if messages.error 
+            +message({
+                type: "error",
+                text: messages.error
+            })
+        else if messages.success 
+            +message({
+                type: "success",
+                text: messages.success
+            })
+        else if messages.info
+            +message({
+                type: "info",
+                text: messages.info
+            })
         include ../partials/header
         main
             block content

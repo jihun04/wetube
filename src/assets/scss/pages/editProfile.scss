@@ -1,15 +1,17 @@
-.form-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 100%;
-  padding: 22px 25px;
-  @media screen and (max-width: 950px) {
-    justify-content: space-between;
-  }
+.form-container--profile {
   .fileUpload {
     display: flex;
     flex-direction: column;
+    @media screen and (min-width: 784px) {
+      & {
+        margin: 0 50px 0 0;
+      }
+    }
+    @media screen and (max-width: 784px) {
+      & {
+        margin: 0 0 25px 0;
+      }
+    }
     .bannerUpload,
     .avatarUpload {
       display: flex;

@@ -1,7 +1,7 @@
 extends layouts/main
 
 block content
-    .form-container
+    .form-container.form-container--profile
         form.fileUpload(enctype="multipart/form-data")
             .avatarUpload
                 .upload-header
@@ -35,8 +35,8 @@ block content
                     .appearIcon 
                         i.fas.fa-camera
         form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
-            span Username
+            span.placeholder Username
             input(type="text", name="name", value=loggedUser.name)
-            span Email
+            span.placeholder Email
             input(type="email", name="email", value=loggedUser.email)
             input(type="submit", value="Update Profile")
