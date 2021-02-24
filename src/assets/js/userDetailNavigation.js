@@ -61,6 +61,7 @@ function init() {
   for (const item of navigationItems) {
     item.addEventListener("click", handleNvigationItemClick);
   }
+  window.addEventListener("resize", handleListScroll);
 }
 
 if (navigationBar) {
