@@ -49,7 +49,7 @@ function handleScrim() {
 function handleHeaderBarsClick() {
   const width = document.documentElement.scrollWidth;
   const path = window.location.pathname;
-  if (path !== "/") {
+  if (Boolean(path !== "/")) {
     handleScrim();
   } else if (width < 810) {
     handleScrim();
