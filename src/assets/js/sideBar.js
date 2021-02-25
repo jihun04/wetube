@@ -36,20 +36,23 @@ function loadSideBar() {
   }
 }
 
+function handleScrim() {
+  if (contentDrawer.classList.contains("content-drawer--hide")) {
+    contentDrawer.classList.remove("content-drawer--hide");
+    scrim.classList.add("scrim--showing");
+  } else {
+    contentDrawer.classList.add("content-drawer--hide");
+    scrim.classList.remove("scrim--showing");
+  }
+}
+
 function handleHeaderBarsClick() {
-  let width = document.documentElement.scrollWidth;
+  const width = document.documentElement.scrollWidth;
   const path = window.location.pathname;
   if (path !== "/") {
-    width = 0;
-  }
-  if (width < 810) {
-    if (contentDrawer.classList.contains("content-drawer--hide")) {
-      contentDrawer.classList.remove("content-drawer--hide");
-      scrim.classList.add("scrim--showing");
-    } else {
-      contentDrawer.classList.add("content-drawer--hide");
-      scrim.classList.remove("scrim--showing");
-    }
+    handleScrim();
+  } else if (width < 810) {
+    handleScrim();
   } else if (width >= 810) {
     if (contentDrawer.classList.contains("content-drawer--none")) {
       contentDrawer.classList.remove("content-drawer--none");
