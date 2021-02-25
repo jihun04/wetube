@@ -49,11 +49,9 @@ function handleScrim() {
 function handleHeaderBarsClick() {
   const width = document.documentElement.scrollWidth;
   const path = window.location.pathname;
-  if (Boolean(path !== "/")) {
+  if (width < 810 && path === "/") {
     handleScrim();
-  } else if (width < 810) {
-    handleScrim();
-  } else if (width >= 810) {
+  } else if (width >= 810 && path === "/") {
     if (contentDrawer.classList.contains("content-drawer--none")) {
       contentDrawer.classList.remove("content-drawer--none");
       sideBar.classList.add("content-drawer--none");
@@ -61,6 +59,8 @@ function handleHeaderBarsClick() {
       contentDrawer.classList.add("content-drawer--none");
       sideBar.classList.remove("content-drawer--none");
     }
+  } else {
+    handleScrim();
   }
 }
 
