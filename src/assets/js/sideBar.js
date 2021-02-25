@@ -44,11 +44,7 @@ function handleHeaderBarsClick() {
       scrim.classList.add("scrim--showing");
     } else {
       contentDrawer.classList.add("content-drawer--hide");
-      scrim.style.opacity = "10";
       scrim.classList.remove("scrim--showing");
-      scrim.addEventListener("transitionend", function () {
-        scrim.style.opacity = "-1";
-      });
     }
   } else if (width >= 810) {
     if (contentDrawer.classList.contains("content-drawer--none")) {
