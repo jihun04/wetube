@@ -9,11 +9,16 @@ const sideBar = document.getElementById("jsSideBar"),
 function loadSideBar() {
   const width = document.documentElement.scrollWidth;
   const path = window.location.pathname;
-  if (width < 810) {
+  if (path !== "/") {
     contentDrawer.classList.add("content-drawer--hide");
     contentDrawer.classList.remove("content-drawer--none");
     scrim.classList.remove("content-drawer--none");
-  } else {
+  }
+  if (width < 810 && path === "/") {
+    contentDrawer.classList.add("content-drawer--hide");
+    contentDrawer.classList.remove("content-drawer--none");
+    scrim.classList.remove("content-drawer--none");
+  } else if (path === "/") {
     contentDrawer.classList.remove("content-drawer--hide");
     contentDrawer.classList.add("content-drawer--none");
     scrim.classList.add("content-drawer--none");
@@ -49,18 +54,24 @@ function handleScrim() {
 function handleHeaderBarsClick() {
   const width = document.documentElement.scrollWidth;
   const path = window.location.pathname;
+  console.log(path);
+  if (path !== "/") {
+    handleScrim();
+  }
   if (width < 810 && path === "/") {
     handleScrim();
   } else if (width >= 810 && path === "/") {
     if (contentDrawer.classList.contains("content-drawer--none")) {
       contentDrawer.classList.remove("content-drawer--none");
       sideBar.classList.add("content-drawer--none");
+      main.style.paddingLeft = "240px";
+      footer.style.paddingLeft = "240px";
     } else {
       contentDrawer.classList.add("content-drawer--none");
       sideBar.classList.remove("content-drawer--none");
+      main.style.paddingLeft = "72px";
+      footer.style.paddingLeft = "72px";
     }
-  } else {
-    handleScrim();
   }
 }
 
