@@ -37,7 +37,11 @@ function loadSideBar() {
 }
 
 function handleHeaderBarsClick() {
-  const width = document.documentElement.scrollWidth;
+  let width = document.documentElement.scrollWidth;
+  const path = window.location.pathname;
+  if (path !== "/") {
+    width = 0;
+  }
   if (width < 810) {
     if (contentDrawer.classList.contains("content-drawer--hide")) {
       contentDrawer.classList.remove("content-drawer--hide");
