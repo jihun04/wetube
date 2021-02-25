@@ -6,7 +6,6 @@ block content
             .avatarUpload
                 .upload-header
                     span Profile picture
-                    span Remove
                 .u-avatar-box 
                     if loggedUser.avatarUrl
                         if loggedUser.avatarUrl.substring(0,4) === "http"
@@ -21,7 +20,6 @@ block content
             .bannerUpload 
                 .upload-header
                     span Banner image
-                    span Remove
                 .u-banner-box
                     .wrap-u-banner-img
                         if loggedUser.bannerUrl
