@@ -10,3 +10,4 @@ import "./scrollUserDetail";
 import "./userDetailNavigation";
 import "./userDetailVideos";
 import "./videoBlock";
+import "./sideBar";

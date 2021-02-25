@@ -1,0 +1,199 @@
+.scrim {
+  background-color: rgba($color: $black, $alpha: 0.6);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+}
+.content-drawer {
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  z-index: 10;
+  &:hover {
+    .content-drawer__guide-wrapper {
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+    }
+  }
+  .content-drawer__header {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba($color: $black, $alpha: 0.12);
+    .header__bars {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      position: relative;
+      button {
+        color: #606060;
+        background-color: rgba($color: #000000, $alpha: 0);
+        border-radius: 50%;
+        font-size: 18px;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: height 0.2s ease-in-out,
+          width 0.2s ease-in-out,
+          background-color 0.2s ease-in-out;
+        z-index: 2;
+        &:focus {
+          outline: none;
+        }
+        &:active {
+          width: 100%;
+          height: 100%;
+          background-color: rgba($color: #444444, $alpha: 0.12);
+        }
+      }
+    }
+    a {
+      display: flex;
+      align-items: center;
+      .fab.fa-youtube {
+        font-size: 24px;
+        color: $red;
+        margin-right: 1px;
+      }
+      span {
+        color: $black;
+        font-size: 19px;
+        position: relative;
+        bottom: -1px;
+        &:nth-child(3) {
+          left: -1.4px;
+        }
+        &:nth-child(4) {
+          left: -4.5px;
+        }
+        &:nth-child(5) {
+          left: -8.2px;
+        }
+        &:nth-child(6) {
+          left: -9.3px;
+        }
+        &:nth-child(7) {
+          left: -9.3px;
+        }
+        font-weight: 600;
+      }
+    }
+  }
+  .content-drawer__guide-wrapper {
+    overflow-y: overlay;
+    height: 100%;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(232, 232, 232);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: rgba($color: #000000, $alpha: 0);
+    }
+    .content-drawer__guides {
+      width: 100%;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba($color: $black, $alpha: 0.12);
+      .content-drawer__guide-header {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 6px 24px;
+        text-transform: uppercase;
+        color: #606060;
+        display: flex;
+        align-items: center;
+      }
+      .content-drawer__guide {
+        height: 40px;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+          background-color: rgba($color: $black, $alpha: 0.12);
+        }
+        .content-drawer__guide-icon {
+          height: 24px;
+          width: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          margin-right: 24px;
+          color: #606060;
+        }
+      }
+    }
+    .content-drawer__footer {
+      padding: 12px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+}
+.side-bar {
+  margin-top: 56px;
+  position: fixed;
+  width: 72px;
+  height: 100%;
+  background-color: white;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease-in-out;
+  .side-bar__guide {
+    height: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: rgba($color: $black, $alpha: 0.12);
+    }
+    .side-bar__guide-icon {
+      color: #606060;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .side-bar__guide-text {
+      font-size: 10px;
+    }
+  }
+}
+.content-drawer--none {
+  display: none;
+}
+.content-drawer--hide {
+  transform: translateX(-240px);
+  z-index: 10;
+}
+.scrim--showing {
+  opacity: 1;
+  z-index: 11;
+}

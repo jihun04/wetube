@@ -1,17 +1,18 @@
-.scrim 
-.content-drawer#contentDrawer
-  .content-drawer__header
-    .header__bars
-        button
-            i.fas.fa-bars
-        a(href=routes.home)
-            i.fab.fa-youtube
-            span W
-            span e
-            span T
-            span u
-            span b
-            span e
+.scrim.content-drawer--none#jsScrim
+.content-drawer.content-drawer--none#jsContentDrawer
+  .content-drawer__header-wrapper
+    .content-drawer__header#jsContentDrawerHeader
+      .header__bars
+          button
+              i.fas.fa-bars
+      a(href=routes.home)
+          i.fab.fa-youtube
+          span W
+          span e
+          span T
+          span u
+          span b
+          span e
   .content-drawer__guide-wrapper 
     .content-drawer__guides
       .content-drawer__guide
@@ -52,9 +53,9 @@
           i.fas.fa-chevron-down
         span.contetn-drawer__guide-text Show more
     .content-drawer__guides
-      .content-drawer__guide-header 
+      .content-drawer__guide-header Subscriptions
     .content-drawer__guides
-      .content-drawer__guide-header 
+      .content-drawer__guide-header More from wetube
       .content-drawer__guide
         span.content-drawer__guide-icon
           i.fab.fa-youtube
@@ -96,23 +97,23 @@
         span.content-drawer__guide-icon
           i.fas.fa-exclamation-circle
         span.contetn-drawer__guide-text Send feedback
-  .content-drawer__footer 
-    p About Press Copyright Contact us Creators Advertise Developers
-    p Terms Privacy Policy & Safety How WeTube works Test new feaures
-  .content-drawer__side-bar
-    .content-drawer__side-bar-guide
-      span.content-drawer__side-bar-guide-icon
-        i.fas.fa-home
-      span.contetn-drawer__side-bar-guide-text Home
-    .content-drawer__side-bar-guide
-      span.content-drawer__side-bar-guide-icon
-        i.fas.fa-fire
-      span.contetn-drawer__side-bar-guide-text Trending
-    .content-drawer__side-bar-guide
-      span.content-drawer__side-bar-guide-icon
-        i.fab.fa-youtube-square
-      span.contetn-drawer__side-bar-guide-text Subscriptions
-    .content-drawer__side-bar-guide
-      span.content-drawer__side-bar-guide-icon
-        i.fas.fa-th-large
-      span.contetn-drawer__side-bar-guide-text Library
+    .content-drawer__footer 
+      p About Press Copyright Contact us Creators Advertise Developers
+      p Terms Privacy Policy & Safety How WeTube works Test new feaures
+.side-bar.content-drawer--none#jsSideBar
+  .side-bar__guide
+    span.side-bar__guide-icon
+      i.fas.fa-home
+    span.side-bar__guide-text Home
+  .side-bar__guide
+    span.side-bar__guide-icon
+      i.fas.fa-fire
+    span.side-bar__guide-text Trending
+  .side-bar__guide
+    span.side-bar__guide-icon
+      i.fab.fa-youtube-square
+    span.side-bar__guide-text Subscriptions
+  .side-bar__guide
+    span.side-bar__guide-icon
+      i.fas.fa-th-large
+    span.side-bar__guide-text Library
