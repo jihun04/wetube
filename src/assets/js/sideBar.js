@@ -8,7 +8,7 @@ const sideBar = document.getElementById("jsSideBar"),
 
 function loadSideBar() {
   const width = document.documentElement.scrollWidth;
-  const href = window.location.href.split("4000")[1];
+  const path = window.location.pathname;
   if (width < 810) {
     contentDrawer.classList.add("content-drawer--hide");
     contentDrawer.classList.remove("content-drawer--none");
@@ -18,12 +18,12 @@ function loadSideBar() {
     contentDrawer.classList.add("content-drawer--none");
     scrim.classList.add("content-drawer--none");
   }
-  if (width >= 810 && width <= 1000 && href === "/") {
+  if (width >= 810 && width <= 1000 && path === "/") {
     sideBar.classList.remove("content-drawer--none");
     contentDrawer.classList.add("content-drawer--none")
     main.style.paddingLeft = "72px";
     footer.style.paddingLeft = "72px";
-  } else if (width > 1000 && href === "/") {
+  } else if (width > 1000 && path === "/") {
     contentDrawer.classList.remove("content-drawer--none")
     sideBar.classList.add("content-drawer--none");
     contentDrawerHeader.style.border = "none";
