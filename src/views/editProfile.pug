@@ -32,7 +32,7 @@ block content
                     input(type="file", name="banner", accept="image/*")
                     .appearIcon 
                         i.fas.fa-camera
-        form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
+        form(action=`/users${routes.editProfile}`, method="post")
             span.placeholder Username
             input(type="text", name="name", value=loggedUser.name)
             span.placeholder Email
